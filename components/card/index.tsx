@@ -2,6 +2,7 @@ import Image from "next/image";
 import cn from "classnames";
 
 interface CardProps {
+  id: string;
   title: string;
   url: string | null;
   children?: React.ReactNode;
@@ -9,13 +10,20 @@ interface CardProps {
   customStyle?: string;
 }
 
-export default function Card({ title, url, children, customStyle }: CardProps) {
+export default function Card({
+  id,
+  title,
+  url,
+  children,
+  customStyle,
+}: CardProps) {
   return (
     <div
       className={cn(
         "flex flex-col justify-center content-start border-2 rounded-md p-6 shadow-sm hover:shadow-md",
         customStyle ? customStyle : ""
       )}
+      data-cy-id={`card-${id}`}
     >
       {url ?? <Image src={url}></Image>}
       <div>

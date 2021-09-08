@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Card from "../components/card";
+import TitleBar from "../components/titlebar";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Card title="Hello" desc="NextJS" imgUrl=""></Card>
+      <TitleBar options={[]} />
     </>
   );
 }
