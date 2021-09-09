@@ -2,16 +2,13 @@ import cn from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import * as Separator from "@radix-ui/react-separator";
-import { useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 
 export interface Option {
   id: string;
   label: string;
   onClick: () => {};
-  //determines if the items is on the left or right side
-  primary: boolean;
-  //determines the item's membership of the hamburger menu
-  sticky: boolean;
+  order: string | number;
 }
 
 interface TitleBarProps {
@@ -24,57 +21,99 @@ const initTitleBar: TitleBarProps = {
   options: [],
 };
 
+interface WebMenuProps {
+  options: Option[];
+  customStyle: string;
+}
+
+function WebMenu({ options: ops, customStyle }: WebMenuProps): JSX.Element {
+  return (
+    <div className={cn("ml-5 flex flex-row", customStyle ?? customStyle)}>
+      {ops.map((o) => (
+        <>
+          {o.order == "last" ? (
+            <>
+              <Separator.Root
+                decorative
+                orientation={"vertical"}
+                key={`login-separator`}
+                className={`ml-4 mr-0 w-0.5 h-6 bg-yisy-green-200 order-${ops.length} self-center`}
+              />
+            </>
+          ) : (
+            <></>
+          )}
+          <p
+            data-cy-id={`option-${o.id}`}
+            key={o.id}
+            className={cn(
+              "text-center m-2 p-2 hover:text-yisy-green-100 hover:underline",
+              `order-${o.order}`
+            )}
+          >
+            {o.label}
+          </p>
+        </>
+      ))}
+    </div>
+  );
+}
+
+function useWindowSize(): undefined | number {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowSize({
+        width: window.innerWidth,
+      });
+    }
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize.width;
+}
+
 export default function TitleBar({ logoUrl, options }: TitleBarProps) {
   const router = useRouter();
   const url = useMemo(() => (logoUrl ? logoUrl : initTitleBar.logoUrl), [
     logoUrl,
   ]);
-  const [viewportWidth, setViewportWidth] = useState(640);
+  const [smallDevice, toggleSmallDevice] = useState(false);
+
+  const vw = useWindowSize();
   useEffect(() => {
-    if (typeof window != undefined) {
-      setViewportWidth(window.innerWidth);
+    if (vw == undefined) {
+      return;
     }
-  }, []);
+    if (vw <= 900) {
+      toggleSmallDevice(true);
+    } else {
+      toggleSmallDevice(false);
+    }
+  }, [vw]);
 
   return (
     <div
-      className={cn("flex flex-row w-100 bg-white border-b-2 rounded-md p-2")}
+      className={cn(
+        "flex flex-row items-center justify-start w-full p-1 mx-auto my-0 space-round"
+      )}
     >
-      <Image
-        src={url}
-        onClick={() => router.push("/")}
-        width="100px"
-        height="60px"
-      ></Image>
-      <div className="flex flex-row space-between">
-        {viewportWidth >= 768 ?? (
-          <>
-            <div className="flex flex-row">
-              {options
-                .filter((o) => o.primary)
-                .map((o) => (
-                  <p data-cy-id={`option-${o.id}`} key={o.id}>
-                    {o.label}
-                  </p>
-                ))}
-            </div>
-            <div className="flex flex-row-reverse">
-              {options
-                .filter((o) => !o.primary)
-                .map((o, i) => (
-                  <>
-                    <p data-cy-id={`option-${o.id}`} key={o.id}>
-                      {o.label}
-                    </p>
-                    {i < options.length - 1 ?? (
-                      <Separator.Root decorative orientation="vertical" />
-                    )}
-                  </>
-                ))}
-            </div>
-          </>
-        )}
+      <div className="p-4">
+        <Image
+          src={url}
+          onClick={() => router.push("/")}
+          alt="Company logo"
+          width={"140"}
+          height={"70"}
+          className={"object-scale-down"}
+        />
       </div>
+      {smallDevice ? (
+        <Meatball options={options}></Meatball>
+      ) : (
+        <WebMenu options={options} className="" />
+      )}
     </div>
   );
 }

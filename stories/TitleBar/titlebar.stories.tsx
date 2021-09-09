@@ -11,22 +11,20 @@ export const Main = Template.bind({});
 
 const options: Option[] = [
   {
-    id: "nav-contact-tel",
-    label: "075 2685 7842",
-    onClick: () => {
-      return {};
-    },
-    primary: false,
-    sticky: true,
-  },
-  {
     id: "nav-login",
     label: "Log In",
     onClick: () => {
       return {};
     },
-    primary: false,
-    sticky: true,
+    order: "last",
+  },
+  {
+    id: "nav-contact-tel",
+    label: "📞 075 2685 7842",
+    onClick: () => {
+      return {};
+    },
+    order: 4,
   },
   {
     id: "nav-pricing",
@@ -34,8 +32,7 @@ const options: Option[] = [
     onClick: () => {
       return {};
     },
-    primary: true,
-    sticky: true,
+    order: 2,
   },
   {
     id: "nav-do-i-need",
@@ -43,17 +40,7 @@ const options: Option[] = [
     onClick: () => {
       return {};
     },
-    primary: true,
-    sticky: false,
-  },
-  {
-    id: "nav-support",
-    label: "Support",
-    onClick: () => {
-      return {};
-    },
-    primary: false,
-    sticky: false,
+    order: 1,
   },
   {
     id: "nav-about-us",
@@ -61,10 +48,9 @@ const options: Option[] = [
     onClick: () => {
       return {};
     },
-    primary: true,
-    sticky: false,
+    order: 3,
   },
 ];
 Main.args = {
-  options: [""],
+  options,
 };

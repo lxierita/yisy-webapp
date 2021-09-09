@@ -27,9 +27,9 @@ export default function Card({
     >
       {url ?? <Image src={url}></Image>}
       <div>
-        <h3 className="text-black text-lg font-semibold">{title}</h3>
+        <h3 className="text-black text-lg font-semibold mb-2">{title}</h3>
       </div>
-      <div className="text-gray-800">{children}</div>
+      <div className="text-gray-800 mt-2">{children}</div>
     </div>
   );
 }

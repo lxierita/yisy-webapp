@@ -25,7 +25,7 @@ export const SimpleWithLink: React.VFC<{}> = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <Link src="#" label="Go to" />
+      <Link src="#" label="Go to" customStyle={"mt-4"} />
     </Card>
   );
 };
