@@ -17,55 +17,6 @@ export default function Home() {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <TitleBar
-        options={[
-          {
-            id: "nav-login",
-            label: "Log In",
-            onClick: () => {
-              return {};
-            },
-            primary: false,
-            sticky: true,
-          },
-          {
-            id: "nav-contact-tel",
-            label: "📞 075 2685 7842",
-            onClick: () => {
-              return {};
-            },
-            primary: false,
-            sticky: true,
-          },
-          {
-            id: "nav-pricing",
-            label: "Pricing",
-            onClick: () => {
-              return {};
-            },
-            primary: true,
-            sticky: true,
-          },
-          {
-            id: "nav-do-i-need",
-            label: "Do I need to pay tax",
-            onClick: () => {
-              return {};
-            },
-            primary: true,
-            sticky: false,
-          },
-          {
-            id: "nav-about-us",
-            label: "Why us",
-            onClick: () => {
-              return {};
-            },
-            primary: true,
-            sticky: true,
-          },
-        ]}
-      />
     </>
   );
 }
