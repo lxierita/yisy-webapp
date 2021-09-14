@@ -20,7 +20,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "flex flex-col justify-center content-start border-2 rounded-md p-6 shadow-sm",
+        "flex flex-col justify-center content-start border-2 rounded-md py-4 px-6 shadow-sm",
         customStyle ? customStyle : ""
       )}
       data-cy-id={`card-${id}`}

@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/react";
 
-import { RadioGroup, RadioGroupItem } from "../components/radio";
+import RadioGroup, { RadioGroupItem } from "../components/radio";
 
 export default {
   component: RadioGroup,
@@ -23,6 +23,7 @@ const items: RadioGroupItem[] = [
 
   { label: "Not sure", value: "notsure", id: "notsure", onClick: () => {} },
 ];
+
 export const Radio: React.VFC<{}> = () => (
   <RadioGroup aria={"a11y"} items={items} />
 );

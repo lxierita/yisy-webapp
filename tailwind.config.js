@@ -77,23 +77,11 @@ module.exports = {
       spin: "spin 1s linear infinite",
       ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-      bounce: "bounce 1s infinite",
-      // slideUpAndFade: {
-      //   "0%": { opacity: 0, transform: "translateY(2px)" },
-      //   "100%": { opacity: 1, transform: "translateY(0)" },
-      // },
-      // slideRightAndFade: {
-      //   "0%": { opacity: 0, transform: "translateX(-2px)" },
-      //   "100%": { opacity: 1, transform: "translateX(0)" },
-      // },
-      // slideDownAndFade: {
-      //   "0%": { opacity: 0, transform: "translateY(-2px)" },
-      //   "100%": { opacity: 1, transform: "translateY(0)" },
-      // },
-      // slideLeftAndFade: {
-      //   "0%": { opacity: 0, transform: "translateX(2px)" },
-      //   "100%": { opacity: 1, transform: "translateX(0)" },
-      // },
+      bounce: "bounce 1s 1 reverse forwards",
+      slideUpAndFade: "slideUpAndFade 1s forwards",
+      slideDownAndFade: "slideDownAndFade 1s",
+      slideRightAndFade: "slideRightAndFade 1s",
+      slideLeftAndFade: "slideLeftAndFade 1s",
     },
     backdropBlur: (theme) => theme("blur"),
     backdropBrightness: (theme) => theme("brightness"),
@@ -484,6 +472,22 @@ module.exports = {
           transform: "none",
           animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
         },
+      },
+      slideUpAndFade: {
+        "0%": { opacity: 0, transform: "translateY(2px)" },
+        "100%": { opacity: 1, transform: "translateY(0)" },
+      },
+      slideRightAndFade: {
+        "0%": { opacity: 0, transform: "translateX(-2px)" },
+        "100%": { opacity: 1, transform: "translateX(0)" },
+      },
+      slideDownAndFade: {
+        "0%": { opacity: 0, transform: "translateY(-2px)" },
+        "100%": { opacity: 1, transform: "translateY(0)" },
+      },
+      slideLeftAndFade: {
+        "0%": { opacity: 0, transform: "translateX(2px)" },
+        "100%": { opacity: 1, transform: "translateX(0)" },
       },
     },
     letterSpacing: {

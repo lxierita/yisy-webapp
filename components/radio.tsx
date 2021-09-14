@@ -16,7 +16,7 @@ interface RadioGroupProps {
 const afterElement =
   "after:block after:w-px after:h-px after:rounded-full bg-yisy-green-200";
 
-export function RadioGroup({ aria, items }: RadioGroupProps) {
+export default function RadioGroup({ aria, items }: RadioGroupProps) {
   return (
     <RadioGroupPrimitive.Root aria-labelledby={aria} className={"w-4/5"}>
       {items.map((i) => (

@@ -35,8 +35,25 @@ export function SecondaryButton({
     <Button
       id={id}
       onClick={onClick}
+      customStyle={cn("text-yisy-dark shadow-none", customStyle ?? customStyle)}
+    >
+      {children}
+    </Button>
+  );
+}
+
+export function TertiaryButton({
+  id,
+  onClick,
+  customStyle,
+  children,
+}: ButtonProps) {
+  return (
+    <Button
+      id={id}
+      onClick={onClick}
       customStyle={cn(
-        "text-yisy-dark border-yisy-dark border",
+        "text-yisy-dark border border-gray-100",
         customStyle ?? customStyle
       )}
     >
@@ -50,7 +67,10 @@ export function Button({ id, onClick, customStyle, children }: ButtonProps) {
     <button
       onClick={onClick}
       data-cy-id={`button-${id}`}
-      className={cn("py-1 px-2 rounded-md m-2", customStyle ?? customStyle)}
+      className={cn(
+        "py-1 px-3 rounded-md m-2 shadow-sm",
+        customStyle ?? customStyle
+      )}
     >
       {children}
     </button>

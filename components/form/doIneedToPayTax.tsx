@@ -1,17 +1,16 @@
 import { useState } from "react";
-import * as RadioGroup from "@radix-ui/react-radio-group";
 import { RadioGroupIndicator } from "@radix-ui/react-radio-group";
-import { SecondaryButton } from "../button";
+import { SecondaryButton, TertiaryButton } from "../button";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import cn from "classnames";
 import Card from "../card";
+import RadioGroup, { RadioGroupItem } from "../radio";
+import Tooltip from "../tooltip";
 
 interface DinProps {
   activeStep: number;
   response: Response;
 }
-
-const radioStyles = "bg-white w-25 h-25 rounded-full";
 
 type Response = "Yes" | "YesBut" | "Unsure" | "No" | "NotEnoughMoney" | null;
 
@@ -22,105 +21,111 @@ function DoINeedToPayTax({ response, activeStep }: DinProps) {
     <Card
       id={"doINeedToPayTax"}
       title={""}
-      customStyle={"leading-relaxed w-3/5"}
+      customStyle={"leading-relaxed w-3/5 border-none pt-1"}
     >
       {as == 2 ? (
-        <SecondaryButton
+        <TertiaryButton
           id={"previous"}
           onClick={() => {
             updateAs(1);
             updateResp(null);
           }}
+          customStyle={
+            "flex flex-row-reverse no-wrap justify-start items-center animate-slideDownAndFade"
+          }
         >
-          <span>Previous</span>
+          <span className={"inline-block px-2 m-0"}>Go to previous</span>
           <ArrowLeftIcon />
-        </SecondaryButton>
+        </TertiaryButton>
       ) : (
         <></>
       )}
       {as == 1 ? (
-        <div>
-          <h4 className={"text-lg"}>
+        <div className={"mt-8"}>
+          <h4 className={"text-lg my-4"}>
             Have you received: gifts, paid-for subscriptions and donations from
             Onlyfans, Patreon or other online platforms?
           </h4>
-          <RadioGroup.Root
-            defaultValue="Yes"
-            aria-labelledby={`Have you received money online? `}
-          >
-            <div
-              onClick={() => {
-                updateResp(null);
-                updateAs(2);
-              }}
-            >
-              <RadioGroup.Item
-                value="yes"
-                id={"yes"}
-                className={cn(radioStyles)}
-              >
-                <RadioGroupIndicator />
-              </RadioGroup.Item>
-              <label htmlFor={"yes"}>Yes</label>
-            </div>
-            <div onClick={() => updateResp("No")}>
-              <RadioGroup.Item value="no" id={"no"} className={cn(radioStyles)}>
-                <RadioGroupIndicator />
-              </RadioGroup.Item>
-              <label htmlFor={"no"}>No</label>
-            </div>
-          </RadioGroup.Root>
+          <RadioGroup
+            aria={"Have you received money online?"}
+            items={[
+              {
+                value: "yes",
+                id: "yes",
+                label: "Yes",
+                onClick: () => {
+                  updateAs(2);
+                  updateResp(null);
+                },
+              },
+              {
+                value: "no",
+                id: "no",
+                label: "No",
+                onClick: () => {
+                  updateResp("No");
+                },
+              },
+            ]}
+          />
         </div>
       ) : (
         <div>
-          <div>
-            <h4>Was it more than £1,000 per year or £80 per month?</h4>
-            <RadioGroup.Root
-              defaultValue="Yes"
-              aria-labelledby={`Did you receive more than £1000?`}
-            >
-              <div onClick={() => updateResp("Yes")}>
-                <RadioGroup.Item
-                  value="yes"
-                  id={"yes"}
-                  className={cn(radioStyles)}
-                >
-                  <RadioGroupIndicator />
-                </RadioGroup.Item>
-                <label htmlFor={"yes"}>Yes</label>
-              </div>
-              <div onClick={() => updateResp("NotEnoughMoney")}>
-                <RadioGroup.Item
-                  value="no"
-                  id={"no"}
-                  className={cn(radioStyles)}
-                >
-                  <RadioGroupIndicator />
-                </RadioGroup.Item>
-                <label htmlFor={"no"}>No</label>
-              </div>
-              <div onClick={() => updateResp("YesBut")}>
-                <RadioGroup.Item
-                  value="yesbut"
-                  id={"yesbut"}
-                  className={cn(radioStyles)}
-                >
-                  <RadioGroupIndicator />
-                </RadioGroup.Item>
-                <label htmlFor={"yesbut"}>Yes but they were gifts</label>
-              </div>
-              <div onClick={() => updateResp("Unsure")}>
-                <RadioGroup.Item value="unsure" id={"unsure"}>
-                  <RadioGroupIndicator />
-                </RadioGroup.Item>
-                <label htmlFor={"unsure"}>I am not sure</label>
-              </div>
-            </RadioGroup.Root>
+          <div className={"flex flex-row justify-start"}>
+            <h4 className={"text-lg my-4 mr-2"}>
+              Was it more than £1,000 per year or £80 per month?
+            </h4>
+            <Tooltip>
+              <h5 className={"font-bold my-2"}>More info</h5>
+              <p>loreum ipsum</p>
+            </Tooltip>
           </div>
+
+          <RadioGroup
+            aria={"Did you receive more than £1000 per year or £80 per month"}
+            items={[
+              {
+                value: "yes",
+                id: "yes",
+                label: "Yes",
+                onClick: () => {
+                  updateResp("Yes");
+                },
+              },
+              {
+                value: "no",
+                id: "no",
+                label: "No",
+                onClick: () => {
+                  updateResp("NotEnoughMoney");
+                },
+              },
+              {
+                value: "yesbut",
+                id: "yesbut",
+                label: "Yes but they were gifts",
+                onClick: () => {
+                  updateResp("YesBut");
+                },
+              },
+              {
+                value: "unsure",
+                id: "unsure",
+                label: "I'm not sure",
+                onClick: () => {
+                  updateResp("Unsure");
+                },
+              },
+            ]}
+          />
         </div>
       )}
       {resp ? (
-        <div>
+        <div
+          className={
+            "mt-4 p-2 text-yisy-green font-bold animate-slideUpAndFade"
+          }
+        >
           <p>{answer(resp)}</p>
         </div>
       ) : (
