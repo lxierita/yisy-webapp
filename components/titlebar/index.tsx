@@ -26,7 +26,6 @@ interface WebMenuProps {
 }
 
 function WebMenu({ items, customStyle }: WebMenuProps): JSX.Element {
-  console.log("items", items);
   return (
     <div
       className={
@@ -91,12 +90,10 @@ export default function TitleBar({ navItems }: TitleBarProps) {
     }
     if (vw <= 900) {
       toggleSmallDevice(true);
-      console.log("use hamburger", smallDevice);
     } else {
       toggleSmallDevice(false);
     }
   }, [vw]);
-  console.log("viewport width", vw, "outside use effect", smallDevice);
   return (
     <div>
       {smallDevice ? (

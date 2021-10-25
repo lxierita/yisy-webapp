@@ -1,4 +1,10 @@
 module.exports = {
+  mode: "jit",
+  purge: [
+    "./public/**/*.html",
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     screens: {
       mobile: { max: "34.375rem" },
@@ -27,6 +33,17 @@ module.exports = {
         normal: "hsl(34, 70%, 55%)",
         dark: "hsl(34, 100%, 30%)",
         xdark: "hsl(34, 100%, 20%)",
+      },
+    },
+    extend: {
+      minHeight: {
+        tap: "var(--min-tap-height)",
+      },
+      width: {
+        full: "calc(100vw - var(--scrollbar-width))",
+      },
+      height: {
+        tall: "calc(100vh + 10px)",
       },
     },
   },
