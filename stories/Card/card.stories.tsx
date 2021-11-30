@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 export const Simple: React.VFC<{}> = () => (
-  <Card id="" title="Card Title" url="" customStyle="w-1/5">
+  <Card id="" title="Card Title" customStyle="w-1/5">
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua.
@@ -20,7 +20,7 @@ export const Simple: React.VFC<{}> = () => (
 
 export const SimpleWithLink: React.VFC<{}> = () => {
   return (
-    <Card id="" title="Card Title" url="" customStyle="w-1/5">
+    <Card id="" title="Card Title"  customStyle="w-1/5">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
@@ -33,19 +33,19 @@ export const SimpleWithLink: React.VFC<{}> = () => {
 export const Multiple: React.VFC<{}> = () => {
   return (
     <div className="flex flex-row">
-      <Card id="" title="Card 1" url="" customStyle="w-1/5 m-2">
+      <Card id="" title="Card 1"  customStyle="w-1/5 m-2">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </Card>
-      <Card id="" title="Card 2" url="" customStyle="w-1/5 m-2">
+      <Card id="" title="Card 2"  customStyle="w-1/5 m-2">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </Card>
-      <Card id="" title="Card 3" url="" customStyle="w-1/5 m-2">
+      <Card id="" title="Card 3"  customStyle="w-1/5 m-2">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.

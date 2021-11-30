@@ -1,12 +1,13 @@
 import React from "react";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import { Option } from "./titlebar";
+import Option from "./titlebar";
 
+// @ts-ignore
 type MeatballItem = Option;
 
 interface MeatballProps {
-  items: MeatballItem[];
+  items: MeatballItem[];å
 }
 
 export const DropdownMenu = DropdownMenuPrimitive.Root;
