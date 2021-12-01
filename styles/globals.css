@@ -45,14 +45,32 @@
         font-style: italic;
         font-display: fallback;
     }
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+    * {
+        margin: 0;
+        line-height: calc(1em + 0.5rem);
+    }
+    html, body, #__next {
+        height: 100%;
+    }
     html {
         --min-tap-height: 44px;
         --font-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-        --font-sans-heading: 'Baron Black'
+        --font-sans-heading: 'Baron'
     }
     body {
         overflow-y: scroll;
         font-family: var(--font-sans-serif);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+    }
+    #__next {
+        isolation: isolate;
+    }
+    p, h1, h2, h3, h4, h5, h6 {
+        overflow-wrap: break-word;
     }
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-sans-heading);
@@ -77,10 +95,14 @@
         overflow-wrap: break-word;
         font-family: var(--font-sans-serif);
     }
-    input, select, textarea {
-        font-size: 1rem;
+    input, select, textarea, button {
+        font: inherit;
     }
     button, input, select, textarea {
         @apply cp:min-h-tap
+    }
+    img, picture, video, canvas, svg {
+        display: block;
+        max-width: 100%;
     }
 }
