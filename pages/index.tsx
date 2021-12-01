@@ -18,9 +18,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <h1>
-        Hiya
+        HIYA BARON
       </h1>
-      <p>It is me</p>
+      <p>It is Rme</p>
     </>
   );
 }
