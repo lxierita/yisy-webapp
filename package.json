@@ -18,6 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@radix-ui/react-accessible-icon": "^0.1.0",
+    "@radix-ui/react-dialog": "^0.1.1",
     "@radix-ui/react-dropdown-menu": "^0.1.0",
     "@radix-ui/react-icons": "^1.0.3",
     "@radix-ui/react-portal": "^0.1.0",
@@ -35,10 +36,12 @@
     "@types/react-dom": "^17.0.9",
     "autoprefixer": "^9",
     "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^2.0.2",
     "classnames": "^2.3.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "postcss": "^7",
+    "styled-components": "^5.3.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.4.2"
   }

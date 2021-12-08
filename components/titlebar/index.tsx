@@ -1,109 +1,186 @@
 import React from "react";
-import cn from "classnames";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import * as Separator from "@radix-ui/react-separator";
-import { ReactNode, useEffect, useMemo, useState } from "react";
-import Meatball from "../meatball";
-import Logo from "../logo";
+import styled from "styled-components";
+import * as Dialog from "@radix-ui/react-dialog";
 
-export interface MenuItem {
-  [id: string]: {
-    id: string;
-    label: string;
-    onClick: () => void;
-    primary: boolean;
-  };
+export interface Item {
+  id: string;
+  label: string;
+  src: string;
 }
 
 interface TitleBarProps {
-  navItems: MenuItem[];
+  navItems: Item[];
 }
 
-interface WebMenuProps {
-  items: MenuItem[];
-  customStyle?: string;
-}
+const StyledLink = styled.li`
+  display: inline-block;
+  padding: 2px 10px;
+  & a {
+    width: auto;
+    padding: 5px 10px;
+    font-weight: normal;
+    font-size: 1.1rem;
+  }
+`;
+const StyledHeader = styled.header`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (max-width: 600px) {
+    justify-content: space-between;
+  }
+`;
 
-function WebMenu({ items, customStyle }: WebMenuProps): JSX.Element {
+const StyledIcon = styled.img`
+  object-fit: contain;
+  max-width: 100px;
+`;
+
+const StyledNav = styled.nav`
+  display: initial;
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
+const StyledButton = styled.button`
+  display: none;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  position: fixed;
+  right: 6px;
+  top: 6px;
+  @media (max-width: 600px) {
+    display: initial;
+  }
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+  svg.close {
+    transform: rotate(-45deg);
+  }
+`;
+
+const StyledModal = styled(Dialog.Content)`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-right: 2px groove var(--color-black-normal);
+  background-color: var(--color-green-bg-xlight);
+
+  & nav ol {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+function mobileNavPortal(props) {
+  const { items } = props;
   return (
-    <div
-      className={
-        "flex flex-row justify-start w-full p-1 mx-auto my-0 items-center"
-      }
-    >
-      <Logo size={{ width: 140, height: 70 }} />
-      <div className={cn("ml-5 flex flex-row", customStyle ?? customStyle)}>
-        {items.map((o) => (
-          <>
-            {o.id.id == "login" ? (
-              <>
-                <Separator.Root
-                  decorative
-                  orientation={"vertical"}
-                  key={`login-separator`}
-                  className={`ml-4 mr-0 w-0.5 h-6 bg-yisy-green-200 order-${o.length} self-center`}
-                />
-              </>
-            ) : (
-              <></>
-            )}
-            <p
-              data-cy-id={`option-${o.id.id}`}
-              key={o.id.id}
-              className={cn(
-                "text-center m-2 p-2 hover:text-yisy-green-100 hover:underline",
-                `order-${o.order}`
-              )}
-            >
-              {o.label}
-            </p>
-          </>
-        ))}
-      </div>
-    </div>
+    <Dialog.Root modal={true}>
+      <Dialog.Trigger asChild={true}>
+        <StyledButton>
+          <svg xmlns="http://www.w3.org/2000/svg">
+            <line
+              x1="4.8"
+              y1="9.6"
+              x2="27.2"
+              y2="9.6"
+              stroke="var(--color-text)"
+              strokeWidth={3}
+              strokeLinecap="round"
+            />
+            <line
+              x1="27.2"
+              y1="22.0"
+              x2="4.8"
+              y2="22.0"
+              stroke="var(--color-text)"
+              strokeWidth={3}
+              strokeLinecap="round"
+            />
+          </svg>
+        </StyledButton>
+      </Dialog.Trigger>
+      <StyledModal>
+        <nav>
+          <ol>
+            {items.map((i) => (
+              <StyledLink key={`link-${i.id}`}>
+                <a href={i.src}>{i.label}</a>
+              </StyledLink>
+            ))}
+          </ol>
+        </nav>
+        <Dialog.Close asChild>
+          <StyledButton>
+            <svg xmlns="http://www.w3.org/2000/svg" className="close">
+              <line
+                x1="16"
+                y1="0"
+                x2="16"
+                y2="32"
+                stroke="var(--color-text)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+              <line
+                x1="0"
+                y1="16"
+                x2="32"
+                y2="16"
+                stroke="var(--color-text)"
+                strokeWidth={3}
+                strokeLinecap="round"
+              />
+            </svg>
+          </StyledButton>
+        </Dialog.Close>
+      </StyledModal>
+    </Dialog.Root>
   );
 }
 
-function useWindowSize(): undefined | number {
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-  });
+const StyledMobileNavPortal = styled(mobileNavPortal)`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+`;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWindowSize({
-        width: window.innerWidth,
-      });
-    }
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize.width;
+export function TitleBar(props) {
+  const items = props.items;
+  return (
+    <>
+      <StyledHeader>
+        {/*use Link element for prod*/}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a href="/">
+          <StyledIcon src={"/static/logo.png"} alt="Return Home" />
+        </a>
+        <StyledNav>
+          <ol>
+            {items.map((item) => (
+              <StyledLink key={`link-${item.id}`}>
+                <a href={item.src}>{item.label}</a>
+              </StyledLink>
+            ))}
+          </ol>
+        </StyledNav>
+        <StyledMobileNavPortal items={items} />
+      </StyledHeader>
+    </>
+  );
 }
 
-export default function TitleBar({ navItems }: TitleBarProps) {
-  const [smallDevice, toggleSmallDevice] = useState(false);
-
-  const vw = useWindowSize();
-  useEffect(() => {
-    if (vw == undefined) {
-      return;
-    }
-    if (vw <= 900) {
-      toggleSmallDevice(true);
-    } else {
-      toggleSmallDevice(false);
-    }
-  }, [vw]);
-  return (
-    <div>
-      {smallDevice ? (
-        <div className={"flex flex-row space-between items-center"}>
-          <Logo size={{ width: 100, height: 45 }} customStyle={"flex-1"} />
-          <WebMenu items={navItems.filter((o) => o.id.primary)} />
-        </div>
-      ) : (
-        <WebMenu items={navItems} />
-      )}
-    </div>
-  );
+export default function Header({ navItems }: TitleBarProps) {
+  return <TitleBar items={navItems} />;
 }

@@ -1,4 +1,4 @@
-import TitleBar, { MenuItem } from "../../components/titlebar";
+import TitleBar, { Item } from "../../components/titlebar";
 import { Meta } from "@storybook/react";
 
 export default {
@@ -6,46 +6,26 @@ export default {
   title: "Components/Title Bar",
 } as Meta;
 
-const menuItems: MenuItem[] = [
+const items: Item[] = [
   {
-    phone: {
-      id: "phone-number",
-      label: "+44 75 2685 7842",
-      onClick: () => {},
-      primary: true,
-    },
+    id: "pricing",
+    label: "Pricing",
+    src: "#",
   },
   {
-    pricing: {
-      id: "pricing",
-      label: "Pricing",
-      onClick: () => {},
-      primary: false,
-    },
+    id: "services",
+    label: "Services",
+    src: "#",
   },
   {
-    "question-form": {
-      id: "question-form",
-      label: "Do I need to pay tax",
-      onClick: () => {},
-      primary: false,
-    },
+    id: "contacts",
+    label: "Contacts",
+    src: "#",
   },
   {
-    "about-us": {
-      id: "about-us",
-      label: "Why us",
-      onClick: () => {},
-      primary: false,
-    },
-  },
-  {
-    login: {
-      id: "login",
-      label: "Log In",
-      onClick: () => {},
-      primary: true,
-    },
+    id: "login",
+    label: "Log in",
+    src: "#",
   },
 ];
 
@@ -53,5 +33,5 @@ const Template = (args) => <TitleBar {...args} />;
 export const Main = Template.bind({});
 
 Main.args = {
-  items: menuItems,
+  navItems: items,
 };

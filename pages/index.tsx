@@ -1,6 +1,29 @@
 import Head from "next/head";
 import Card from "../components/card";
-import TitleBar from "../components/titlebar";
+import TitleBar, { Item } from "../components/titlebar";
+
+const items: Item[] = [
+  {
+    id: "pricing",
+    label: "Pricing",
+    src: "#",
+  },
+  {
+    id: "services",
+    label: "Services",
+    src: "#",
+  },
+  {
+    id: "contacts",
+    label: "Contacts",
+    src: "#",
+  },
+  {
+    id: "login",
+    label: "Log in",
+    src: "#",
+  },
+];
 
 export default function Home() {
   return (
@@ -17,10 +40,15 @@ export default function Home() {
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <h1>
-        HIYA BARON
-      </h1>
-      <p>It is Rme</p>
+      <TitleBar navItems={items} />
+      <main>
+        <section>
+          <article>
+            <h2>Hello</h2>
+            <p>Welcome to Yisy</p>
+          </article>
+        </section>
+      </main>
     </>
   );
 }
