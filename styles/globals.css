@@ -61,8 +61,10 @@
         --font-sans-heading: 'Baron';
         --color-text: hsl(248, 5%, 10%);
         --color-black-normal: hsl(248, 5%, 15%);
+        --color-black-text-light: hsl(248, 5%, 25%);
         --color-orange-bg-light: hsl(34, 100%, 85%);
         --color-green-bg-xlight: hsl(109, 20%, 80%);
+        --color-green-text-dark: hsl(109, 50%, 20%);
 
     }
     body {
