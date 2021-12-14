@@ -28,21 +28,18 @@ const StyledOverlay = styled(Dialog.Overlay)`
   height: 100vh;
   opacity: 0.6;
   background-color: var(--color-green-bg-xlight);
+  animation: slide-in 700ms var(--transition-timing-ease-out) both;
+  animation-delay: 300ms;
 `;
 
 const StyledModal = styled(Dialog.Content)`
   width: 70vw;
   max-width: 450px;
   height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  & nav ol {
-    display: flex;
-    flex-direction: column;
-  }
+  display: grid;
+  place-content: center;
+  animation: slide-in 500ms var(--transition-timing-ease) both;
+  animation-delay: 500ms;
 `;
 
 const StyledNavList = styled.ol`
@@ -58,7 +55,6 @@ const StyledNavLink = styled.li`
   font-size: 1.2rem;
   color: var(--color-green-text-dark);
   text-shadow: currentColor 0.1px 0.2px 0.6px;
-
   &:hover {
     color: var(--color-black-text-light);
   }

@@ -15,10 +15,17 @@ const StyledNavLink = styled.li`
   display: inline-block;
   padding: 2px 10px;
   & a {
+    display: inline-block;
     width: auto;
     padding: 5px 10px;
     font-weight: normal;
     font-size: 1.1rem;
+    transition: transform 200ms;
+    color: var(--color-green-text-dark);
+  }
+  &:hover a {
+    transform: translateY(-8px);
+    color: var(--color-black-normal);
   }
 `;
 const StyledHeader = styled.header`
@@ -26,6 +33,7 @@ const StyledHeader = styled.header`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  padding: 16px;
   @media (max-width: 600px) {
     justify-content: space-between;
   }
