@@ -53,6 +53,16 @@
             transform: translateX(0%);
         }
     }
+    @keyframes drop-in {
+        from {
+             transform: translateY(-50%);
+             opacity: 0;
+        }
+        to {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    }
     *, *::before, *::after {
         box-sizing: border-box;
     }
@@ -70,9 +80,26 @@
         --color-text: hsl(248, 5%, 10%);
         --color-black-normal: hsl(248, 5%, 15%);
         --color-black-text-light: hsl(248, 5%, 25%);
-        --color-orange-bg-light: hsl(34, 100%, 85%);
-        --color-green-bg-xlight: hsl(109, 20%, 80%);
+        --color-orange--xlight: hsl(34, 90%, 90%);
+        --color-orange-light: hsl(34, 100%, 85%);
+        --color-orange-normal: hsl(34, 70%, 55%);
+        --color-orange-dark: hsl(34, 100%, 30%);
+        --color-orange-xdark: hsl(34, 100%, 20%);
+        --color-green-xlight: hsl(109, 20%, 80%);
+        --color-green-light: hsl(109, 20%, 71%);
         --color-green-text-dark: hsl(109, 50%, 20%);
+        --color-green-normal: hsl(109, 20%, 50%);
+
+        --color-gray-50: #fafaf9;
+        --color-gray-100: #f5f5f4;
+        --color-gray-200: #e7e5e4;
+        --color-gray-300: #d6d3d1;
+        --color-gray-400: #a8a29e;
+        --color-gray-500: #78716c;
+        --color-gray-600: #57534e;
+        --color-gray-700: #44403c;
+        --color-gray-800: #292524;
+        --color-gray-900: #1c1917;
         --transition-timing-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         --transition-timing-ease-in: cubic-bezier(0.75, 0, 1, 1);
         --transition-timing-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);

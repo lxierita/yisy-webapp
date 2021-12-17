@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Card from "../components/card";
-import TitleBar, { Item } from "../components/titlebar";
+import Card, { BasicWithIcon } from "../components/card";
+import TitleBar, { Item } from "../components/header";
 
 const items: Item[] = [
   {
@@ -42,11 +42,18 @@ export default function Home() {
       </Head>
       <TitleBar navItems={items} />
       <main>
-        <section>
-          <article>
-            <h2>Hello</h2>
-            <p>Welcome to Yisy</p>
-          </article>
+        <section id="features">
+          <h2>Why us</h2>
+          <ul>
+            <li>
+              <BasicWithIcon
+                id="privacy"
+                title="We keep it private"
+                gist="We keep your paperworks secure and will not reveal to any parties other than HMRC."
+              />
+            </li>
+            <li></li>
+          </ul>
         </section>
       </main>
     </>
