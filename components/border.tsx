@@ -1,12 +1,18 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ReactNode } from "react";
 
 const BasicBorder = styled.div`
   border: 0.1px solid var(--color-gray-300);
+  width: 100%;
+  height: 100%;
 
   &:focus,
   &:hover {
-    border: 0.1px solid var(--color-gray-500);
+    ${(props) =>
+      props.clickable ??
+      css`
+        border: 0.1px solid var(--color-gray-500);
+      `}
   }
 `;
 
@@ -71,7 +77,15 @@ export const SectionBorder = styled.div`
   padding: 48px;
 `;
 
-export default function Border(props) {
-  const children = props.children;
-  return <BasicBorder aria-hidden>{children}</BasicBorder>;
+export interface BasicBorderProps {
+  clickable?: boolean;
+  children?: ReactNode;
+}
+
+export default function Border({ clickable, children }: BasicBorderProps) {
+  return (
+    <BasicBorder aria-hidden clickable={clickable}>
+      {children}
+    </BasicBorder>
+  );
 }

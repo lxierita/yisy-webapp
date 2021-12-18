@@ -22,6 +22,7 @@ const SmallSection = styled.section`
 
 const Body = styled.div`
   background-color: var(--color-gray-100);
+  height: 1200px;
 `;
 
 export const DarkDiagonalBackground = () => (
@@ -66,7 +67,7 @@ export const LightDiagonalBackgroundVariant = () => (
 
 export const TransparentDiagonalBackground = () => (
   <Body>
-    <Border>
+    <Border clickable={false}>
       <SmallSection />
       <Section>
         <BackgroundMask theme="transparent" alternate={false} />
