@@ -30,9 +30,25 @@ function SectionContent() {
   );
 }
 
-export const PrimaryInfo: React.VFC<{}> = () => <Solid type="info" />;
+const SolidWrapper = styled(VerticalFlexContainer)`
+  height: 300px;
+  & div {
+    flex: 1;
+  }
+`;
 
-export const Section: React.VFC<{}> = () => (
+export const InfoSection: React.VFC<{}> = () => (
+  <SolidWrapper>
+    <Solid type="info" />
+  </SolidWrapper>
+);
+export const WarningSection: React.VFC<{}> = () => (
+  <SolidWrapper>
+    <Solid type="warning" />
+  </SolidWrapper>
+);
+
+export const InteractiveSection: React.VFC<{}> = () => (
   <SectionBorder>
     <SectionContent />
   </SectionBorder>

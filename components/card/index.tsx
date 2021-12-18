@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { ExpansiveButton } from "../button";
 import { StyledBorderedCardTitle, StyledCardTitle } from "../index";
 
@@ -122,14 +121,7 @@ export function Collapsible({
   );
 }
 
-export default function Card({
-  id,
-  title,
-  imageUrl,
-  gist,
-  collapsible,
-  details,
-}: CardProps) {
+export default function Card({ id, title, gist }: CardProps) {
   return (
     <article id={id}>
       <h3>{title}</h3>

@@ -6,7 +6,11 @@ import Card, {
 import React from "react";
 import { Meta } from "@storybook/react";
 import styled from "styled-components";
-import { HorizontalFlexContainer } from "../index.stories";
+import {
+  HorizontalFlexContainer,
+  VerticalFlexContainer,
+} from "../index.stories";
+import { Solid } from "../../components/border";
 
 export default {
   title: "Components/Card",
@@ -142,4 +146,44 @@ export const CollapsibleCard: React.VFC<{}> = () => (
           eiusmod tempor incididunt"
     />
   </HorizontalFlexContainer>
+);
+
+export const AsideInfoCard = () => (
+  <VerticalFlexContainer>
+    <Solid type="info">
+      <Collapsible
+        id="single-collapsiblecard"
+        title="Some additional information"
+        gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua."
+        subtitle="A subtitle"
+        note="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt"
+      />
+    </Solid>
+  </VerticalFlexContainer>
+);
+
+export const AsideWarningCard = () => (
+  <VerticalFlexContainer>
+    <Solid type="warning">
+      <Collapsible
+        id="single-collapsiblecard"
+        title="Some additional information"
+        gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt."
+        subtitle="A subtitle"
+        note="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididuntLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt"
+      />
+    </Solid>
+  </VerticalFlexContainer>
 );
