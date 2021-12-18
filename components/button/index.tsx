@@ -79,6 +79,7 @@ const StyledButtonWrapper = styled.button`
   font-size: 0.9rem;
   font-weight: bold;
   color: inherit;
+  width: fit-content;
 
   & svg {
     position: relative;
@@ -128,7 +129,7 @@ export function ExpansiveButton({
   altLabel,
 }: ExpansiveButtonProps) {
   return (
-    <ExpansiveWrapper>
+    <ExpansiveWrapper id="expansive-wrapper">
       <CollapsiblePrimitive.Trigger asChild>
         <StyledButtonWrapper>
           <ChevronDownIcon />

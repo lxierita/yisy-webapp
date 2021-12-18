@@ -71,6 +71,7 @@ export const SectionBorder = styled.div`
   padding: 48px;
 `;
 
-export default function Border() {
-  return <BasicBorder />;
+export default function Border(props) {
+  const children = props.children;
+  return <BasicBorder aria-hidden>{children}</BasicBorder>;
 }
