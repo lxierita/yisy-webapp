@@ -6,6 +6,7 @@ import Card, {
 import React from "react";
 import { Meta } from "@storybook/react";
 import styled from "styled-components";
+import { HorizontalFlexContainer } from "../index.stories";
 
 export default {
   title: "Components/Card",
@@ -15,17 +16,6 @@ export default {
 const BasicWrapper = styled.div`
   padding: 8px;
   margin: 0 auto;
-`;
-
-const FlexContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  padding: 4px;
-  margin: 0 auto;
-
-  & div {
-    flex: 1;
-  }
 `;
 
 export const BasicCard: React.VFC<{}> = () => (
@@ -40,7 +30,7 @@ export const BasicCard: React.VFC<{}> = () => (
 );
 export const BasicCardsMultiple: React.VFC<{}> = () => {
   return (
-    <FlexContainer>
+    <HorizontalFlexContainer>
       <BasicWithIcon
         id="multiple-card"
         title="Card 1"
@@ -58,7 +48,7 @@ export const BasicCardsMultiple: React.VFC<{}> = () => {
         gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt"
       />
-    </FlexContainer>
+    </HorizontalFlexContainer>
   );
 };
 
@@ -76,7 +66,7 @@ export const BasicCardWithIcon: React.VFC<{}> = () => (
 
 export const BasicCardsWithIconMultiple: React.VFC<{}> = () => {
   return (
-    <FlexContainer>
+    <HorizontalFlexContainer>
       <BasicWithIcon
         id="multiple-card"
         title="Card 1"
@@ -97,7 +87,7 @@ export const BasicCardsWithIconMultiple: React.VFC<{}> = () => {
         gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt"
       />
-    </FlexContainer>
+    </HorizontalFlexContainer>
   );
 };
 
@@ -115,7 +105,7 @@ export const ClickableCard: React.VFC<{}> = () => (
 
 export const ClickableCardsMultiple: React.VFC<{}> = () => {
   return (
-    <FlexContainer>
+    <HorizontalFlexContainer>
       <Clickable
         id="multiple-card"
         title="Subscription"
@@ -136,12 +126,12 @@ export const ClickableCardsMultiple: React.VFC<{}> = () => {
         gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt"
       />
-    </FlexContainer>
+    </HorizontalFlexContainer>
   );
 };
 
 export const CollapsibleCard: React.VFC<{}> = () => (
-  <FlexContainer>
+  <HorizontalFlexContainer>
     <Collapsible
       id="single-collapsiblecard"
       title="Card Title"
@@ -151,5 +141,5 @@ export const CollapsibleCard: React.VFC<{}> = () => (
       note="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt"
     />
-  </FlexContainer>
+  </HorizontalFlexContainer>
 );

@@ -87,7 +87,8 @@
         --color-orange-xdark: hsl(34, 100%, 20%);
         --color-green-xlight: hsl(109, 20%, 80%);
         --color-green-light: hsl(109, 20%, 71%);
-        --color-green-text-dark: hsl(109, 50%, 20%);
+        --color-green-dark: hsl(109, 60%, 20%);
+        --color-green-xdark: hsl(109, 80%, 20%);
         --color-green-normal: hsl(109, 20%, 50%);
 
         --color-gray-50: #fafaf9;

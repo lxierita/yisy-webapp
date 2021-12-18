@@ -41,6 +41,13 @@ export function Solid({ type, children }: BorderProps) {
     </StyledBorder>
   );
 }
+
+export const SectionBorder = styled.div`
+  border: 3px dashed var(--color-gray-400);
+  border-radius: 8px;
+  padding: 48px;
+`;
+
 export default function Border() {
   return <BasicBorder />;
 }

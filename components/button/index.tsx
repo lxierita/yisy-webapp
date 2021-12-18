@@ -9,7 +9,7 @@ interface ButtonProps {
   id: string;
   onClick: () => void;
   customStyle?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 interface ExpansiveButtonProps {
   label: string;
