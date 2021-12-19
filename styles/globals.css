@@ -84,8 +84,10 @@
         --color-black-normal: hsl(248, 5%, 15%);
         --color-black-text-light: hsl(248, 5%, 25%);
         --color-yisy-orange-logo: hsl(36, 97%, 85%);
+        --color-orange-light-bg: hsl(36, 45%, 95%);
         --color-orange-xlight: hsl(34, 50%, 90%);
         --color-orange-light: hsl(34, 90%, 85%);
+        --color-orange-vibrant: hsl(34, 100%, 50%);
         --color-orange-normal: hsl(34, 70%, 55%);
         --color-orange-dark: hsl(34, 100%, 30%);
         --color-orange-xdark: hsl(34, 100%, 20%);
@@ -94,12 +96,13 @@
         --color-green-normal: hsl(146, 50%, 36%);
         --color-green-dark: hsl(146, 70%, 20%);
         --color-green-xdark: hsl(146, 80%, 20%);
+        --color-yisy-gray-light-bg: hsl(240, 3%, 95%);
         --color-yisy-gray-logo: hsl(240, 3%, 29%);
         --color-yisy-gray-dark: hsl(240, 10%, 20%);
         --color-yisy-gray-light: hsl(240, 10%, 50%);
         --color-yisy-green-logo: hsl(117, 15%, 72%);
         --color-yisy-green-dark: hsl(117, 15%, 35%);
-        --color-yisy-green-vibrant: hsl(117, 40%, 50%);
+        --color-yisy-green-text: hsl(116.6, 82.8%, 25.1%);
         --color-yisy-green-light: hsl(117, 40%, 90%);
         --color-yisy-green-xlight: hsl(117, 15%, 90%);
         --color-gray-50: #fafaf9;

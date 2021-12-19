@@ -1,7 +1,15 @@
-import Layout, { BackgroundMask } from "../components/layout";
+import Layout, {
+  BackgroundMask,
+  SectionContainer,
+  SectionContentContainer,
+} from "../components/layout";
 import { Meta } from "@storybook/react";
 import styled from "styled-components";
 import Border, { Solid } from "../components/border";
+import { VerticalFlexContainer } from "./index.stories";
+import { ClickableCard } from "./Card/card.stories";
+import { Clickable } from "../components/card";
+import React from "react";
 
 export default {
   title: "Components/Layout",
@@ -9,9 +17,14 @@ export default {
 } as Meta;
 
 const Section = styled.section`
-  width: 80vw;
-  height: 70vh;
+  width: 100%;
+  height: 100%;
+  min-height: fit-content;
   padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
 `;
 
 const SmallSection = styled.section`
@@ -19,6 +32,39 @@ const SmallSection = styled.section`
   height: 30vh;
   padding: 32px;
 `;
+
+const StyledSectionContent = () => (
+  <SectionContentContainer>
+    <VerticalFlexContainer id="main">
+      <h2>Title</h2>
+      <h3>Section content subtitle</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore m agna aliqua.Lorem ipsum dolor
+        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+      </p>
+    </VerticalFlexContainer>
+    <VerticalFlexContainer id="aside">
+      <Clickable
+        id="single-card"
+        title="Card Title"
+        gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua."
+        url="/Self-Assessment"
+      />
+      <Clickable
+        id="multiple-card"
+        title="Year round"
+        url="/year-round"
+        gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt"
+      />
+    </VerticalFlexContainer>
+  </SectionContentContainer>
+);
 
 const Body = styled.div`
   background-color: var(--color-gray-100);
@@ -48,9 +94,12 @@ export const DarkDiagonalBackgroundVariant = () => (
 export const LightDiagonalBackground = () => (
   <div>
     <SmallSection />
-    <Section>
-      <BackgroundMask theme="light" alternate={false} />
-    </Section>
+    <SectionContainer>
+      <Section>
+        <BackgroundMask theme="light" alternate={false} />
+        <StyledSectionContent />
+      </Section>
+    </SectionContainer>
     <SmallSection />
   </div>
 );
