@@ -77,6 +77,15 @@ export const SectionBorder = styled.div`
   padding: 48px;
 `;
 
+//TODO: control dash strokes distance with svg
+// https://stackoverflow.com/questions/2771171/control-the-dashed-border-stroke-length-and-distance-between-strokes
+export const SuccessBorder = styled.div`
+  border-inline: 8px dashed var(--color-green-light);
+  border-block: 3px ridge var(--color-green-light);
+  border-radius: 8px;
+  padding: 48px;
+`;
+
 export interface BasicBorderProps {
   clickable?: boolean;
   children?: ReactNode;

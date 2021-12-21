@@ -1,4 +1,8 @@
-import Border, { SectionBorder, Solid } from "../../components/border";
+import Border, {
+  SectionBorder,
+  Solid,
+  SuccessBorder,
+} from "../../components/border";
 import { Meta } from "@storybook/react";
 import styled from "styled-components";
 import { VerticalFlexContainer, PrimaryButton } from "../index.stories";
@@ -13,14 +17,16 @@ const FormWrapper = styled(VerticalFlexContainer)`
   position: relative;
 `;
 
-function SectionContent() {
+interface BorderContentProps {
+  title: string;
+  content: string;
+}
+
+function BorderContent({ title, content }: BorderContentProps) {
   return (
     <FormWrapper>
-      <h2>Section title</h2>
-      <p>
-        This border is most likely to be applied to sections of interactive
-        contents, such as forms and informative games.
-      </p>
+      <h2>{title}</h2>
+      <p>{content}</p>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt
@@ -37,19 +43,35 @@ const SolidWrapper = styled(VerticalFlexContainer)`
   }
 `;
 
-export const InfoSection: React.VFC<{}> = () => (
+export const InfoBorder: React.VFC<{}> = () => (
   <SolidWrapper>
     <Solid type="info" />
   </SolidWrapper>
 );
-export const WarningSection: React.VFC<{}> = () => (
+export const WarningBorder: React.VFC<{}> = () => (
   <SolidWrapper>
     <Solid type="warning" />
   </SolidWrapper>
 );
 
-export const InteractiveSection: React.VFC<{}> = () => (
+export const InteractiveBorder: React.VFC<{}> = () => (
   <SectionBorder>
-    <SectionContent />
+    <BorderContent
+      title="Section Title"
+      content="This border is most likely to be applied to Borders of interactive
+        contents, such as forms and informative games."
+    />
   </SectionBorder>
 );
+
+export const SuccessMessageBorder = () => {
+  return (
+    <SuccessBorder>
+      <BorderContent
+        title="Success!"
+        content="You will soon receive an email confirmation of booking from us. Below
+        the booking details. If required reschedule or cancellation, please email us at hello@yisy.co.uk"
+      />
+    </SuccessBorder>
+  );
+};

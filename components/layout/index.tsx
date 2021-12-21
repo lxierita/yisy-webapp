@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
+import React, { useEffect, useState } from "react";
+import { relative } from "jest-haste-map/build/lib/fast_path";
+import { number } from "prop-types";
 
 const BackgroundMaskWrapper = styled.div`
   width: 100%;
-  height: 100%;
-  min-height: 800px;
   background-color: ${(props) =>
     props.theme === "light"
       ? "var(--color-orange-light-bg)"
@@ -11,12 +12,13 @@ const BackgroundMaskWrapper = styled.div`
       ? "var(--color-yisy-green-dark)"
       : "none"};
   transform: var(--diagonal-skew);
+  overflow-x: hidden;
   position: absolute;
+  padding: 32px;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
 `;
 
 const TwigWrapper = styled.div`
@@ -59,43 +61,96 @@ const TwigWrapper = styled.div`
   }
 `;
 
-export const SectionContainer = styled.div`
-  position: relative;
-`;
+interface SectionContainerProps {
+  id: string;
+  children: React.ReactNode;
+}
 
-export const SectionContentContainer = styled.div`
-  width: 100%;
-  height: 100%;
+const StyledSection = styled.section`
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  color: var(--color-black-text-light);
   justify-content: center;
   align-items: center;
-  padding: 32px;
+`;
+
+type Height = "initial" | number;
+const initHeight: Height = "initial";
+
+export function SectionContainer({ id, children }: SectionContainerProps) {
+  const [height, updateHeight] = useState(initHeight);
+  useEffect(() => {
+    //  TODO: get the "correct height"
+    const section = document.querySelector(`#${id}`);
+    const sectionHeight = Math.round(section.getBoundingClientRect().height);
+    const content = document.querySelector(`#${id} #main`);
+    const contentComputedHeight = Math.round(
+      content.getBoundingClientRect().height
+    );
+    const mask = document.querySelector(`#${id} #mask`);
+    const maskComputedHeight = Math.round(mask.getBoundingClientRect().height);
+    const maxHeight = Math.max(maskComputedHeight, contentComputedHeight);
+    console.log(
+      "mask: ",
+      maskComputedHeight,
+      "content: ",
+      contentComputedHeight,
+      "max",
+      maxHeight
+    );
+    if (sectionHeight <= maxHeight) {
+      console.log("section.clientHeight <= maxHeight");
+
+      if (contentComputedHeight < maskComputedHeight) {
+        updateHeight(maskComputedHeight + 400);
+        console.log("contentHeight < maskHeight");
+
+        console.log(section.clientHeight);
+      } else {
+        updateHeight(contentComputedHeight + 200);
+        console.log("contentHeight > maskHeight");
+      }
+    }
+  }, []);
+  console.log("height", height);
+
+  return (
+    <StyledSection id={id} style={{ height: `${height}` }}>
+      {children}
+    </StyledSection>
+  );
+}
+
+export const StyledSectionContentContainer = styled.div`
+  color: var(--color-black-text-light);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 80%;
+  margin: 0 auto;
   position: relative;
-  max-height: 80%;
   z-index: 1;
-
-  & #aside {
-    flex: 1 999 0px;
-  }
-
-  & #main {
-    flex: 1 1 150px;
-    max-height: 450px;
-  }
 
   & h2,
   & h3 {
     color: var(--color-yisy-green-text);
     font-size: 1.2rem;
   }
+`;
 
-  & #main h3 {
+export const StyledSectionContentMain = styled.div`
+  flex: 1 1 150px;
+
+  #section-subtitle {
     color: var(--color-pure-black);
     font-size: 1.6rem;
     font-weight: bold;
   }
+`;
+
+export const StyledSectionContentAside = styled.aside`
+  flex: 1;
 `;
 
 type Theme = "light" | "dark" | "transparent";
@@ -107,7 +162,7 @@ export interface BackgroundMaskProps {
 
 export function BackgroundMask({ theme, alternate }: BackgroundMaskProps) {
   return (
-    <BackgroundMaskWrapper aria-hidden theme={theme}>
+    <BackgroundMaskWrapper aria-hidden theme={theme} id="mask">
       <TwigWrapper alternate={alternate} theme={theme}>
         <img src="/static/twig2.png" />
       </TwigWrapper>

@@ -1,13 +1,14 @@
 import Layout, {
   BackgroundMask,
+  StyledSectionContentContainer,
+  StyledSectionContentAside,
+  StyledSectionContentMain,
   SectionContainer,
-  SectionContentContainer,
 } from "../components/layout";
 import { Meta } from "@storybook/react";
 import styled from "styled-components";
 import Border, { Solid } from "../components/border";
 import { VerticalFlexContainer } from "./index.stories";
-import { ClickableCard } from "./Card/card.stories";
 import { Clickable } from "../components/card";
 import React from "react";
 
@@ -17,14 +18,9 @@ export default {
 } as Meta;
 
 const Section = styled.section`
-  width: 100%;
-  height: 100%;
-  min-height: fit-content;
-  padding: 32px;
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 48px;
 `;
 
 const SmallSection = styled.section`
@@ -34,36 +30,40 @@ const SmallSection = styled.section`
 `;
 
 const StyledSectionContent = () => (
-  <SectionContentContainer>
-    <VerticalFlexContainer id="main">
-      <h2>Title</h2>
-      <h3>Section content subtitle</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore m agna aliqua.Lorem ipsum dolor
-        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-      </p>
-    </VerticalFlexContainer>
-    <VerticalFlexContainer id="aside">
-      <Clickable
-        id="single-card"
-        title="Card Title"
-        gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  <StyledSectionContentContainer theme="light" id="main">
+    <StyledSectionContentMain>
+      <VerticalFlexContainer>
+        <h2>Title</h2>
+        <h3 id="section-subtitle">Section content subtitle</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore m agna aliqua.Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua.
+        </p>
+      </VerticalFlexContainer>
+    </StyledSectionContentMain>
+    <StyledSectionContentAside>
+      <VerticalFlexContainer>
+        <Clickable
+          id="single-card"
+          title="Card Title"
+          gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua."
-        url="/Self-Assessment"
-      />
-      <Clickable
-        id="multiple-card"
-        title="Year round"
-        url="/year-round"
-        gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          url="/Self-Assessment"
+        />
+        <Clickable
+          id="multiple-card"
+          title="Year round"
+          url="/year-round"
+          gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt"
-      />
-    </VerticalFlexContainer>
-  </SectionContentContainer>
+        />
+      </VerticalFlexContainer>
+    </StyledSectionContentAside>
+  </StyledSectionContentContainer>
 );
 
 const Body = styled.div`
@@ -94,11 +94,9 @@ export const DarkDiagonalBackgroundVariant = () => (
 export const LightDiagonalBackground = () => (
   <div>
     <SmallSection />
-    <SectionContainer>
-      <Section>
-        <BackgroundMask theme="light" alternate={false} />
-        <StyledSectionContent />
-      </Section>
+    <SectionContainer id="diagonal">
+      <StyledSectionContent />
+      <BackgroundMask theme="light" alternate={false} />
     </SectionContainer>
     <SmallSection />
   </div>
