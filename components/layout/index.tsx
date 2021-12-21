@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import React from "react";
-import { Theme } from "../index";
+import { colors, ThemeName } from "../index";
 
 const BackgroundMaskWrapper = styled.div`
   position: absolute;
@@ -13,10 +13,10 @@ const Mask = styled.div`
   height: 100%;
   background-color: ${(props) =>
     props.theme === "light"
-      ? "var(--color-orange-light-bg)"
+      ? colors.light.bg
       : props.theme === "dark"
-      ? "var(--color-yisy-green-xdark)"
-      : "none"};
+      ? colors.dark.bg
+      : colors.transparent.bg};
   transform: var(--diagonal-skew);
   overflow-x: hidden;
   position: relative;
@@ -29,6 +29,7 @@ const TwigWrapper = styled.div`
   height: 25px;
   position: absolute;
   isolation: isolate;
+  display: ${(props) => (props.theme === "transparent" ? "none" : "initial")};
 
   &:first-of-type {
     ${(props) =>
@@ -83,8 +84,10 @@ export function SectionContainer({ id, children }: SectionContainerProps) {
 export const StyledSectionContentContainer = styled.div`
   color: ${(props) =>
     props.theme === "light"
-      ? "var(--color-black-text-light)"
-      : "var(--color-gray-text)"};
+      ? colors.light.body
+      : props.theme === "dark"
+      ? colors.dark.body
+      : colors.transparent.body};
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -100,8 +103,10 @@ export const StyledSectionContentContainer = styled.div`
   & h3 {
     color: ${(props) =>
       props.theme === "light"
-        ? "var(--color-yisy-green-text)"
-        : "var(--color-orange-vibrant)"};
+        ? colors.light.title
+        : props.theme === "dark"
+        ? colors.dark.title
+        : colors.transparent.title};
     font-size: 1.2rem;
   }
 `;
@@ -113,8 +118,10 @@ export const StyledSectionContentMain = styled.div`
   & h3#section-subtitle {
     color: ${(props) =>
       props.theme === "light"
-        ? "var(--color-pure-black)"
-        : "var(--color-pure-gray-100)"};
+        ? colors.light.subtitle
+        : props.theme === "dark"
+        ? colors.dark.subtitle
+        : colors.transparent.subtitle};
     font-size: 1.6rem;
     font-weight: bold;
   }
@@ -125,7 +132,7 @@ export const StyledSectionContentAside = styled.aside`
 `;
 
 export interface BackgroundMaskProps {
-  theme: Theme;
+  theme: ThemeName;
   alternate: boolean;
 }
 

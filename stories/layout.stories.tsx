@@ -17,12 +17,6 @@ export default {
   component: Layout,
 } as Meta;
 
-const Section = styled.section`
-  position: relative;
-  display: flex;
-  justify-content: center;
-`;
-
 const SmallSection = styled.section`
   width: 80vw;
   height: 30vh;
@@ -71,15 +65,10 @@ const StyledSectionContent = (props) => {
   );
 };
 
-const Body = styled.div`
-  background-color: var(--color-gray-100);
-  height: 1200px;
-`;
-
 export const DarkDiagonalBackground = () => (
   <div>
     <SmallSection />
-    <SectionContainer id="diagonal">
+    <SectionContainer id="diagonal-dark">
       <StyledSectionContent theme="dark" />
       <BackgroundMask theme="dark" alternate={false} />
     </SectionContainer>
@@ -90,10 +79,10 @@ export const DarkDiagonalBackground = () => (
 export const DarkDiagonalBackgroundVariant = () => (
   <div>
     <SmallSection />
-    <Section>
+    <SectionContainer id="diagonal-dark">
       <StyledSectionContent theme="dark" />
       <BackgroundMask theme="dark" alternate />
-    </Section>
+    </SectionContainer>
     <SmallSection />
   </div>
 );
@@ -101,7 +90,7 @@ export const DarkDiagonalBackgroundVariant = () => (
 export const LightDiagonalBackground = () => (
   <div>
     <SmallSection />
-    <SectionContainer id="diagonal">
+    <SectionContainer id="diagonal-light">
       <StyledSectionContent theme="light" />
       <BackgroundMask theme="light" alternate={false} />
     </SectionContainer>
@@ -112,23 +101,21 @@ export const LightDiagonalBackground = () => (
 export const LightDiagonalBackgroundVariant = () => (
   <div>
     <SmallSection />
-    <Section>
-      <StyledSectionContent theme="dark" />
+    <SectionContainer id="diagonal-light">
+      <StyledSectionContent theme="light" />
       <BackgroundMask theme="light" alternate />
-    </Section>
+    </SectionContainer>
     <SmallSection />
   </div>
 );
 
 export const TransparentDiagonalBackground = () => (
-  <Body>
-    <Border clickable={false}>
-      <SmallSection />
-      <Section>
-        <StyledSectionContent theme="dark" />
-        <BackgroundMask theme="transparent" alternate={false} />
-      </Section>
-      <SmallSection />
-    </Border>
-  </Body>
+  <div>
+    <SmallSection />
+    <SectionContainer id="diagonal-transparent">
+      <StyledSectionContent theme="transparent" />
+      <BackgroundMask theme="transparent" alternate={false} />
+    </SectionContainer>
+    <SmallSection />
+  </div>
 );
