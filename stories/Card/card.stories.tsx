@@ -103,6 +103,7 @@ export const ClickableCard: React.VFC<{}> = () => (
       gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua."
       url="/Self-Assessment"
+      theme="light"
     />
   </BasicWrapper>
 );
@@ -111,12 +112,14 @@ export const ClickableCardsMultiple: React.VFC<{}> = () => {
   return (
     <HorizontalFlexContainer>
       <Clickable
+        theme="light"
         id="multiple-card"
         title="Subscription"
         url="/subscription"
         gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet"
       />
       <Clickable
+        theme="light"
         id="multiple-card"
         title="Year round"
         url="/year-round"
@@ -124,6 +127,7 @@ export const ClickableCardsMultiple: React.VFC<{}> = () => {
           eiusmod tempor incididunt"
       />
       <Clickable
+        theme="light"
         id="multiple-card"
         title="Not sure"
         url="/guide/service-option"

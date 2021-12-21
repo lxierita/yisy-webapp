@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { ExpansiveButton } from "../button";
-import { StyledBorderedCardTitle, StyledCardTitle } from "../index";
+import { StyledBorderedCardTitle, StyledCardTitle, Theme } from "../index";
 
 interface BasicCardProps {
   id: string;
@@ -11,6 +11,7 @@ interface BasicCardProps {
 }
 type ClickableProps = BasicCardProps & {
   url: string;
+  theme: Theme;
 };
 
 type CardProps = ClickableProps & {
@@ -56,21 +57,28 @@ const ClickableWrapper = styled.a`
   padding: 24px 32px;
   max-width: 500px;
   min-width: 250px;
-  border: 0.1px solid var(--color-gray-300);
+  border: ${(props) =>
+    props.theme === "light"
+      ? "0.1px solid var(--color-gray-300)"
+      : "0.1px solid var(--color-gray-500)"};
   border-radius: 8px;
 
   &:focus,
   &:hover {
-    border: 0.1px solid var(--color-gray-500);
+    border: ${(props) =>
+      props.theme === "light"
+        ? "0.1px solid var(--color-gray-500)"
+        : "0.1px solid var(--color-gray-300)"};
   }
 `;
 
-export function Clickable({ id, title, gist, url }: ClickableProps) {
+export function Clickable({ id, title, gist, url, theme }: ClickableProps) {
   return (
     <Link href={url}>
       <ClickableWrapper
         id={"clickable-card-${id}"}
         data-cy-id={`clickable-card-${id}`}
+        theme={theme}
       >
         <StyledCardTitle>{title}</StyledCardTitle>
         <p>{gist}</p>

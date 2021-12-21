@@ -29,42 +29,47 @@ const SmallSection = styled.section`
   padding: 32px;
 `;
 
-const StyledSectionContent = () => (
-  <StyledSectionContentContainer theme="light" id="main">
-    <StyledSectionContentMain>
-      <VerticalFlexContainer>
-        <h2>Title</h2>
-        <h3 id="section-subtitle">Section content subtitle</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore m agna aliqua.Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua.
-        </p>
-      </VerticalFlexContainer>
-    </StyledSectionContentMain>
-    <StyledSectionContentAside>
-      <VerticalFlexContainer>
-        <Clickable
-          id="single-card"
-          title="Card Title"
-          gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+const StyledSectionContent = (props) => {
+  const theme = props.theme;
+  return (
+    <StyledSectionContentContainer theme={theme} id="main">
+      <StyledSectionContentMain theme={theme}>
+        <VerticalFlexContainer>
+          <h2>Title</h2>
+          <h3 id="section-subtitle">Section content subtitle</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore m agna aliqua.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </VerticalFlexContainer>
+      </StyledSectionContentMain>
+      <StyledSectionContentAside>
+        <VerticalFlexContainer>
+          <Clickable
+            id="single-card"
+            title="Card Title"
+            gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
  tempor incididunt ut labore et dolore magna aliqua."
-          url="/Self-Assessment"
-        />
-        <Clickable
-          id="multiple-card"
-          title="Year round"
-          url="/year-round"
-          gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            url="/Self-Assessment"
+            theme={theme}
+          />
+          <Clickable
+            id="multiple-card"
+            title="Year round"
+            url="/year-round"
+            gist="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt"
-        />
-      </VerticalFlexContainer>
-    </StyledSectionContentAside>
-  </StyledSectionContentContainer>
-);
+            theme={theme}
+          />
+        </VerticalFlexContainer>
+      </StyledSectionContentAside>
+    </StyledSectionContentContainer>
+  );
+};
 
 const Body = styled.div`
   background-color: var(--color-gray-100);
@@ -74,9 +79,10 @@ const Body = styled.div`
 export const DarkDiagonalBackground = () => (
   <div>
     <SmallSection />
-    <Section>
+    <SectionContainer id="diagonal">
+      <StyledSectionContent theme="dark" />
       <BackgroundMask theme="dark" alternate={false} />
-    </Section>
+    </SectionContainer>
     <SmallSection />
   </div>
 );
@@ -85,6 +91,7 @@ export const DarkDiagonalBackgroundVariant = () => (
   <div>
     <SmallSection />
     <Section>
+      <StyledSectionContent theme="dark" />
       <BackgroundMask theme="dark" alternate />
     </Section>
     <SmallSection />
@@ -95,7 +102,7 @@ export const LightDiagonalBackground = () => (
   <div>
     <SmallSection />
     <SectionContainer id="diagonal">
-      <StyledSectionContent />
+      <StyledSectionContent theme="light" />
       <BackgroundMask theme="light" alternate={false} />
     </SectionContainer>
     <SmallSection />
@@ -106,6 +113,7 @@ export const LightDiagonalBackgroundVariant = () => (
   <div>
     <SmallSection />
     <Section>
+      <StyledSectionContent theme="dark" />
       <BackgroundMask theme="light" alternate />
     </Section>
     <SmallSection />
@@ -117,6 +125,7 @@ export const TransparentDiagonalBackground = () => (
     <Border clickable={false}>
       <SmallSection />
       <Section>
+        <StyledSectionContent theme="dark" />
         <BackgroundMask theme="transparent" alternate={false} />
       </Section>
       <SmallSection />

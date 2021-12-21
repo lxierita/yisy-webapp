@@ -78,6 +78,7 @@
         --font-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
         --font-sans-heading: 'Baron';
         --color-text: hsl(248, 5%, 10%);
+        --color-gray-text: hsl(209.1, 20%, 67.6%);
         --color-pure-black: hsl(0, 0%, 0%);
         --color-pure-gray-500: hsl(0, 0%, 50%);
         --color-pure-gray-100: hsl(0, 0%, 95%);
@@ -87,7 +88,7 @@
         --color-orange-light-bg: hsl(36, 45%, 95%);
         --color-orange-xlight: hsl(34, 50%, 90%);
         --color-orange-light: hsl(34, 90%, 85%);
-        --color-orange-vibrant: hsl(34, 100%, 50%);
+        --color-orange-vibrant: hsl(33.8, 92.3%, 69.4%);
         --color-orange-normal: hsl(34, 70%, 55%);
         --color-orange-dark: hsl(34, 100%, 30%);
         --color-orange-xdark: hsl(34, 100%, 20%);
@@ -95,13 +96,14 @@
         --color-green-light: hsl(146, 90%, 71%);
         --color-green-normal: hsl(146, 50%, 36%);
         --color-green-dark: hsl(146, 70%, 20%);
-        --color-green-xdark: hsl(146, 80%, 20%);
+        --color-green-xdark: hsl(146, 20%, 20%);
         --color-yisy-gray-light-bg: hsl(240, 3%, 95%);
         --color-yisy-gray-logo: hsl(240, 3%, 29%);
         --color-yisy-gray-dark: hsl(240, 10%, 20%);
         --color-yisy-gray-light: hsl(240, 10%, 50%);
         --color-yisy-green-logo: hsl(117, 15%, 72%);
         --color-yisy-green-dark: hsl(117, 15%, 35%);
+        --color-yisy-green-xdark: hsl(117, 20%, 20%);
         --color-yisy-green-text: hsl(116.6, 82.8%, 25.1%);
         --color-yisy-green-light: hsl(117, 40%, 90%);
         --color-yisy-green-xlight: hsl(117, 15%, 90%);
@@ -119,8 +121,8 @@
         --transition-timing-ease-in: cubic-bezier(0.75, 0, 1, 1);
         --transition-timing-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
         --transition-timing-ease: cubic-bezier(0.44, 0.21, 0, 1);
-        --diagonal-skew: skewY(-10deg);
-        --diagonal-skew-opposite: skewY(10deg);
+        --diagonal-skew: skewY(-5deg);
+        --diagonal-skew-opposite: skewY(5deg);
     }
     body {
         overflow-y: scroll;

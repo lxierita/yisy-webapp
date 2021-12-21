@@ -21,3 +21,5 @@ export const StyledBorderedCardTitle = styled(StyledCardTitle)`
     margin-right: 12px;
   }
 `;
+
+export type Theme = "light" | "dark" | "transparent";
