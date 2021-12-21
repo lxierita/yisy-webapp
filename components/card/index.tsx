@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { ExpansiveButton } from "../button";
-import { StyledBorderedCardTitle, StyledCardTitle, Theme } from "../index";
+import { StyledBorderedCardTitle, StyledCardTitle, ThemeName } from "../index";
 
 interface BasicCardProps {
   id: string;
@@ -11,7 +11,7 @@ interface BasicCardProps {
 }
 type ClickableProps = BasicCardProps & {
   url: string;
-  theme: Theme;
+  theme: ThemeName;
 };
 
 type CardProps = ClickableProps & {
@@ -58,17 +58,17 @@ const ClickableWrapper = styled.a`
   max-width: 500px;
   min-width: 250px;
   border: ${(props) =>
-    props.theme === "light"
-      ? "0.1px solid var(--color-gray-300)"
-      : "0.1px solid var(--color-gray-500)"};
+    props.theme === "dark"
+      ? "0.1px solid var(--color-gray-500)"
+      : "0.1px solid var(--color-gray-300)"};
   border-radius: 8px;
 
   &:focus,
   &:hover {
     border: ${(props) =>
-      props.theme === "light"
-        ? "0.1px solid var(--color-gray-500)"
-        : "0.1px solid var(--color-gray-300)"};
+      props.theme === "dark"
+        ? "0.1px solid var(--color-gray-300)"
+        : "0.1px solid var(--color-gray-500)"};
   }
 `;
 
