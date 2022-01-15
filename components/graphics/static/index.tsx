@@ -37,7 +37,7 @@ export const PatreonIcon = () => (
 );
 const PatreonSearchWrapper = styled.div`
   width: 300px;
-  height: 32px;
+  height: 48px;
   border-radius: 16px;
   border: 1px solid hsl(40, 13%, 95.5%);
   padding: 10px 16px;
