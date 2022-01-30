@@ -2,8 +2,10 @@ import PatreonEarningStats from "../../components/graphics/static/patreon_earnin
 import { Meta } from "@storybook/react";
 
 export default {
-  title: "Graphics/Base/SearchBar",
+  title: "Graphics/Base/PatreonEarningStats",
   component: PatreonEarningStats,
 } as Meta;
 
-export { NavBar } from "../../components/graphics/static/patreon_earning_stats";
+export { TitleBar } from "../../components/graphics/static/patreon_earning_stats";
+export { SideMenu } from "../../components/graphics/static/patreon_earning_stats";
+export const PatreonEarning = () => <PatreonEarningStats />;

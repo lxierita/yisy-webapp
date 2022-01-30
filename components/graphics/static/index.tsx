@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { BellIcon } from "@radix-ui/react-icons";
 
 const PatreonIconWrapper = styled.div`
-  width: 33px;
-  height: 32px;
+  width: 25px;
+  height: 20px;
   display: grid;
   grid-template-columns: repeat(1fr, 5);
   grid-template-rows: 2fr 2fr 1fr;
@@ -11,7 +10,7 @@ const PatreonIconWrapper = styled.div`
     "bar circle circle circle"
     "bar circle circle circle"
     "bar blank blank blank";
-  gap: 3px;
+  gap: 2px;
 
   & > * {
     background-color: hsl(356.5, 100%, 62.9%);
@@ -35,43 +34,39 @@ export const PatreonIcon = () => (
     <div id="circle" />
   </PatreonIconWrapper>
 );
+
 const PatreonSearchWrapper = styled.div`
-  width: 300px;
-  height: 48px;
-  border-radius: 16px;
+  width: 200px;
+  height: 30px;
+  border-radius: 9999px;
   border: 1px solid hsl(40, 13%, 95.5%);
-  padding: 10px 16px;
+  padding: 0.5rem 0.75rem;
   background-color: hsl(40, 13%, 95.5%);
   color: hsl(45, 4.6%, 65.9%);
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
 `;
 
-const ProfileWrapper = styled.div`
+export const ProfileOne = styled.div`
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: ${(props) => (props.isLarge ? "50px" : "25px")};
+  height: ${(props) => (props.isLarge ? "50px" : "25px")};
   overflow: hidden;
-
-  & #shapes > * {
-    width: 100%;
-    min-height: 100%;
-    position: absolute;
-    opacity: 0.5;
-  }
-
-  #red-box {
-    background-color: indianred;
-  }
-  #purple-circle {
-    background-color: mediumpurple;
-    border-radius: 50%;
-  }
-  #blue-box {
-    background-color: deepskyblue;
-  }
+  border: 1px solid hsl(50, 12.5%, 90.6%);
+  align-self: center;
+  background: linear-gradient(
+    90deg,
+    #1f005c,
+    #5b0060,
+    #870160,
+    #ac255e,
+    #ca485c,
+    #e16b5c,
+    #f39060,
+    #ffb56b
+  );
 `;
 
 const SearchIcon = () => (
@@ -91,17 +86,7 @@ const SearchIcon = () => (
     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
   </svg>
 );
-export const ProfileOne = () => {
-  return (
-    <ProfileWrapper>
-      <div id="shapes">
-        <div id="red-box" />
-        <div id="purple-circle" />
-        <div id="blue-box" />
-      </div>
-    </ProfileWrapper>
-  );
-};
+
 export const PatreonSearch = () => (
   <PatreonSearchWrapper>
     <SearchIcon />
