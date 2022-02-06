@@ -11,6 +11,7 @@ import {
   IdCardIcon,
   RocketIcon,
 } from "@radix-ui/react-icons";
+import { VerticalFlexContainer } from "../../../stories/index.stories";
 
 const Wrapper = styled.div`
   display: grid;
@@ -239,16 +240,27 @@ const PatreonButton = styled.div`
   width: fit-content;
   height: 30px;
   border-radius: 9999px;
-  margin-top: 8px;
   border: 1px solid hsl(40, 13%, 95.5%);
   padding: 0.5rem 0.75rem;
-  background-color: hsl(203.1, 68.4%, 92.5%);
-  color: hsl(207.9, 54%, 36.7%);
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 0.7rem;
   text-align: center;
+  background-color: hsl(203.1, 68.4%, 92.5%);
+`;
+
+const PatreonPrimaryBtn = styled(PatreonButton)`
+  color: hsl(207.9, 54%, 36.7%);
+  margin-top: 8px;
+`;
+
+const PatreonPill = styled(PatreonButton)`
+  color: black;
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
+  background-color: ${(props) => (!props.isActive ? "initial" : "none")};
+  border: ${(props) => (!props.isActive ? "initial" : "none")};
+  font-size: 10px;
 `;
 
 const Title = styled.div`
@@ -269,25 +281,172 @@ const DashboardText = styled(Text)`
   margin-top: 16px;
   color: hsl(40, 33.3%, 10.6%);
 `;
+const SmallTitle = styled(Title)`
+  font-size: 10px;
+`;
+
+const gridCellHeight = 40;
+
+const Graph = styled.div`
+  height: 300px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(6, 40px);
+  grid-template-columns: 25px repeat(6, 65px);
+  place-content: center;
+  position: relative;
+`;
+
+const GraphContainer = styled(VerticalFlexContainer)`
+  margin: 24px 0 0 0;
+  width: 460px;
+  border: 1px solid hsl(50, 12.5%, 90.6%);
+  padding: 16px;
+  border-radius: 5px;
+`;
+
+const GraphGridItemBorder = "1px solid hsl(50, 12.5%, 90.6%)";
+const GraphGridItem = styled.div`
+  width: 100%;
+  border-top: ${(props) =>
+    props.isLastRow
+      ? "1px solid hsl(205.7, 9.9%, 58.2%)"
+      : "1px solid hsl(50, 12.5%, 90.6%)"};
+  border-left: 1px solid hsl(50, 12.5%, 90.6%);
+  border-bottom: ${(props) => props.isLastRow && GraphGridItemBorder};
+`;
+
+const GraphGridItemWithContent = styled(GraphGridItem)`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+`;
+
+const GraphGridItemContent = styled.div`
+  width: 75%;
+  height: ${(props) => props.span * gridCellHeight - props.offset}px;
+  background-color: hsl(150.7, 57.7%, 72.2%);
+  position: absolute;
+  top: ${(props) => props.offset}px;
+  z-index: 1;
+  opacity: 0.7;
+`;
+
+const GraphFlexBox = styled(FlexBox)`
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+`;
+
+const GraphPoint = styled.span`
+  font-size: 8px;
+  justify-self: ${(props) => (props.isHorizontal ? "center" : "flex-end")};
+  padding-right: ${(props) => (props.isHorizontal ? "0px" : "6px")};
+`;
+
+const DashboardGraph = () => {
+  return (
+    <GraphContainer>
+      <GraphFlexBox>
+        <SmallTitle>Earnings before tax</SmallTitle>
+        <FlexBox>
+          <PatreonPill isActive>6 Months</PatreonPill>
+          <PatreonPill>1 Year</PatreonPill>
+          <PatreonPill>All Time</PatreonPill>
+        </FlexBox>
+      </GraphFlexBox>
+      <Graph>
+        <GraphPoint>£2k</GraphPoint>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItemWithContent>
+          <GraphGridItemContent span={5} offset={15} />
+        </GraphGridItemWithContent>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphPoint>£1.5k</GraphPoint>
+        <GraphGridItemWithContent>
+          <GraphGridItemContent span={4} offset={10} />
+        </GraphGridItemWithContent>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphPoint>£1k</GraphPoint>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItemWithContent>
+          <GraphGridItemContent span={3} offset={8} />
+        </GraphGridItemWithContent>
+        <GraphPoint>£800</GraphPoint>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItemWithContent>
+          <GraphGridItemContent span={2} offset={0} />
+        </GraphGridItemWithContent>
+        <GraphGridItem />
+        <GraphPoint>£600</GraphPoint>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItemWithContent>
+          <GraphGridItemContent span={1} offset={-5} />
+        </GraphGridItemWithContent>
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphGridItem />
+        <GraphPoint>£0</GraphPoint>
+        <GraphGridItem isLastRow />
+        <GraphGridItemWithContent isLastRow>
+          <GraphGridItemContent span={1} offset={0} />
+        </GraphGridItemWithContent>
+        <GraphGridItem isLastRow />
+        <GraphGridItem isLastRow />
+        <GraphGridItem isLastRow />
+        <GraphGridItem isLastRow />
+        <GraphPoint>-£20</GraphPoint>
+        <GraphPoint isHorizontal>Oct 2020</GraphPoint>
+        <GraphPoint isHorizontal>Nov 2020</GraphPoint>
+        <GraphPoint isHorizontal>Dec 2020</GraphPoint>
+        <GraphPoint isHorizontal>Jan 2021</GraphPoint>
+        <GraphPoint isHorizontal>Feb 2021</GraphPoint>
+        <GraphPoint isHorizontal>Mar 2021</GraphPoint>
+      </Graph>
+    </GraphContainer>
+  );
+};
+
+const StyledDashboardGraph = styled(DashboardGraph)`
+  margin-top: 50px;
+`;
+
 const DashBoard = () => {
   return (
     <StyledDashboard>
       <DashboardContent>
         <Title>Earnings</Title>
         <FlexBox>
-          <PatreonButton>Download Monthly CSV</PatreonButton>
-          <PatreonButton>Download Detail CSV</PatreonButton>
+          <PatreonPrimaryBtn>Download Monthly CSV</PatreonPrimaryBtn>
+          <PatreonPrimaryBtn>Download Detail CSV</PatreonPrimaryBtn>
         </FlexBox>
+        <DashboardText>
+          Earnings are the amount of income you take home from the money pledged
+          to you as a creator on Patreon.
+        </DashboardText>
+        <StyledDashboardGraph />
       </DashboardContent>
-      <DashboardText>
-        Earnings are the amount of income you take home from the money pledged
-        to you as a creator on Patreon. Earnings correspond to the time that
-        Patreon successfully processed your pledges and refunds, rather than the
-        time when you performed the work or published paid posts.
-      </DashboardText>
     </StyledDashboard>
   );
 };
+
 export default function PatreonEarningStats() {
   return (
     <Wrapper id="graphics-patreon-ui-wrapper">
