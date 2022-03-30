@@ -1,29 +1,44 @@
 import Head from "next/head";
 import Card, { BasicWithIcon } from "../components/card";
 import TitleBar, { Item } from "../components/header";
+import Hero from "../components/hero";
+import styled from "styled-components";
 
-const items: Item[] = [
+export const items: Item[] = [
   {
-    id: "pricing",
-    label: "Pricing",
-    src: "#",
+    id: "pay-income-tax",
+    label: "Pay Income Tax",
+    src: "#pay-income-tax",
   },
   {
-    id: "services",
-    label: "Services",
-    src: "#",
+    id: "claim-tax-relief",
+    label: "Claim Tax Relief",
+    src: "#claim-tax-relief",
   },
   {
-    id: "contacts",
-    label: "Contacts",
-    src: "#",
+    id: "check-our-pricing",
+    label: "Check Our Pricing",
+    src: "#check-our-pricing",
   },
   {
-    id: "login",
-    label: "Log in",
-    src: "#",
+    id: "why-us",
+    label: "Why Us",
+    src: "#why-us",
   },
 ];
+
+const StyledMain = styled.main`
+  margin: 0 auto;
+  @media (min-width: 100px) {
+    width: 90%;
+  }
+  @media (min-width: 1100px) {
+    width: 85%;
+  }
+  @media (min-width: 1300px) {
+    width: 80%;
+  }
+`;
 
 export default function Home() {
   return (
@@ -39,59 +54,21 @@ export default function Home() {
         <meta name="google-site-verification" content="todo" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      <TitleBar navItems={items} />
-      <main>
-        <section id="hero">
-          <h1>Tax made easy for content providers</h1>
-          <p>
-            Hassle-free, paper-free and judgement-free accounting services.
-            Claiming tax reduction for online content creators
-          </p>
-          <button>Start now</button>
-          <button>Learn more</button>
-        </section>
-        <section id="features">
-          <h2>Why us</h2>
-          <ul>
-            <li>
-              <BasicWithIcon
-                id="feature-privacy"
-                title="Private"
-                gist="We keep your paperworks secure and will not reveal to any parties other than HMRC."
-              />
-            </li>
-            <li>
-              <BasicWithIcon
-                id="feature-security"
-                title="Security"
-                gist="Nothing leaked with the secure accounting software."
-              />
-            </li>
-            <li>
-              <BasicWithIcon
-                id="feature-authority"
-                title="AAT Certified"
-                gist="Certified by accounting association with governmental recognition"
-              />
-            </li>
-            <li>
-              <BasicWithIcon
-                id="feature-customer-service"
-                title="Remain close contact"
-                gist="Email or call, we stay in touch"
-              />
-            </li>
-            <li>
-              <BasicWithIcon
-                id="feature-smooth-offboarding"
-                title="Smooth onboarding"
-                gist="We get you prepared when you decide to terminate the service"
-              />
-            </li>
-          </ul>
-        </section>
-      </main>
+      <StyledMain>
+        <TitleBar navItems={items} />
+        <Hero />
+      </StyledMain>
     </>
   );
 }

@@ -25,11 +25,7 @@ export function PrimaryButton({
   children,
 }: ButtonProps) {
   return (
-    <Button
-      id={id}
-      onClick={onClick}
-      customStyle={cn("bg-yisy-green text-white", customStyle ?? customStyle)}
-    >
+    <Button id={id} onClick={onClick} customStyle={customStyle}>
       {children}
     </Button>
   );
@@ -145,17 +141,27 @@ export function ExpansiveButton({
   );
 }
 
+const StyledButton = styled.button`
+  background-color: var(--color-green-normal);
+  transition: filter 600ms;
+  color: var(--color-gray-100);
+  padding: 8px 32px;
+  filter: drop-shadow(1px 2px 3px var(--shadow-color));
+
+  &:hover {
+    transition: filter 300ms;
+    filter: brightness(110%);
+  }
+`;
+
 export function Button({ id, onClick, customStyle, children }: ButtonProps) {
   return (
-    <button
+    <StyledButton
       onClick={onClick}
       data-cy-id={`button-${id}`}
-      className={cn(
-        "py-1 px-3 rounded-md m-2 shadow-sm",
-        customStyle ?? customStyle
-      )}
+      className={cn("py-1 px-3 rounded-md m-2", customStyle ?? customStyle)}
     >
       {children}
-    </button>
+    </StyledButton>
   );
 }

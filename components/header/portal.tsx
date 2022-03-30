@@ -1,16 +1,13 @@
-import * as Portal from "@radix-ui/react-portal";
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
+import { CrossCircledIcon } from "@radix-ui/react-icons";
 
 const StyledButton = styled.button`
   display: none;
   width: 50px;
   height: 50px;
   padding: 5px;
-  position: fixed;
-  right: 6px;
-  top: 6px;
   svg {
     width: 32px;
     height: 32px;
@@ -18,34 +15,30 @@ const StyledButton = styled.button`
   svg.close {
     transform: rotate(-45deg);
   }
-  @media (max-width: 600px) {
+  @media (min-width: 300px) {
     display: block;
   }
 `;
-const StyledOverlay = styled(Dialog.Overlay)`
-  width: 100vw;
-  min-width: calc(100% - 50px);
-  height: 100vh;
-  opacity: 0.6;
-  background-color: var(--color-green-bg-xlight);
-  animation: slide-in 700ms var(--transition-timing-ease-out) both;
-  animation-delay: 300ms;
-`;
 
 const StyledModal = styled(Dialog.Content)`
-  width: 70vw;
-  max-width: 450px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   height: 100vh;
   display: grid;
   place-content: center;
-  animation: slide-in 500ms var(--transition-timing-ease) both;
-  animation-delay: 500ms;
+  background-color: var(--color-gray-200);
+  animation: slide-in 300ms var(--transition-timing-ease) both;
+  animation-delay: 100ms;
 `;
 
 const StyledNavList = styled.ol`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const StyledNavLink = styled.li`
@@ -53,10 +46,13 @@ const StyledNavLink = styled.li`
   padding: 16px 32px;
   margin: 8px 16px;
   font-size: 1.2rem;
-  color: var(--color-green-text-dark);
-  text-shadow: currentColor 0.1px 0.2px 0.6px;
+  color: var(--color-yisy-gray-logo);
+  filter: drop-shadow(0.1px 0.1px var(--shadow-color));
+
   &:hover {
-    color: var(--color-black-text-light);
+    color: var(--color-yisy-gray-dark);
+    transition: filter 100ms;
+    filter: brightness(20%) hue-rotate(100deg);
   }
 
   & a {
@@ -65,10 +61,35 @@ const StyledNavLink = styled.li`
   }
 `;
 
-function MobileNav(props) {
+const CloseButton = styled.button`
+  all: unset;
+  margin-block: 200px;
+  & .icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    color: var(--color-yisy-gray-logo);
+    filter: drop-shadow(0.1px 0.1px var(--shadow-color));
+  }
+`;
+
+const Wrapper = styled(Dialog.Root)`
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  @media (min-width: 300px) {
+    display: block;
+  }
+  @media (min-width: 1100px) {
+    display: none;
+  }
+`;
+
+export default function MobileNav(props): ReactElement {
   const items = props.items;
   return (
-    <Dialog.Root modal={true}>
+    <Wrapper modal={true}>
       <Dialog.Trigger asChild={true}>
         <StyledButton>
           <svg xmlns="http://www.w3.org/2000/svg">
@@ -93,41 +114,23 @@ function MobileNav(props) {
           </svg>
         </StyledButton>
       </Dialog.Trigger>
-      <StyledOverlay />
       <StyledModal>
         <nav>
           <StyledNavList>
-            {items ? (
+            {items &&
               items.map((item) => (
                 <StyledNavLink key={`link-${item.id}`}>
                   <a href={item.src}>{item.label}</a>
                 </StyledNavLink>
-              ))
-            ) : (
-              <></>
-            )}
+              ))}
+            <Dialog.DialogClose asChild>
+              <CloseButton>
+                <CrossCircledIcon className="icon" />
+              </CloseButton>
+            </Dialog.DialogClose>
           </StyledNavList>
         </nav>
       </StyledModal>
-    </Dialog.Root>
-  );
-}
-
-const StyledMobileNav = styled(MobileNav)`
-  display: none;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  @media (max-width: 600px) {
-    display: block;
-  }
-`;
-
-export default function StyledMobileNavPortal(props) {
-  const items = props.items;
-  return (
-    <Portal.Root>
-      <StyledMobileNav items={items} />
-    </Portal.Root>
+    </Wrapper>
   );
 }

@@ -3,48 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: 'Baron';
-        src: url('/baron/baron.woff2') format('woff2');
-        font-weight: 400;
-        font-style: normal;
-        font-display: fallback;
-    }
-    @font-face {
-        font-family: 'Baron Black';
-        src: url('/baron/baron_black.woff2') format('woff2');
-        font-weight: 400;
-        font-style: normal;
-        font-display: fallback;
-    }
-    @font-face {
-        font-family: 'Baron';
-        src: url('/baron/baron_bold.woff2') format('woff2');
-        font-weight: 700;
-        font-style: normal;
-        font-display: fallback;
-    }
-    @font-face {
-        font-family: 'Baron';
-        src: url('/baron/baron_italic.woff2') format('woff2');
-        font-weight: 400;
-        font-style: italic;
-        font-display: fallback;
-    }
-    @font-face {
-        font-family: 'Baron';
-        src: url('/baron/baron_bold_italic.woff2') format('woff2');
-        font-weight: 700;
-        font-style: italic;
-        font-display: fallback;
-    }
-    @font-face {
-        font-family: 'Baron Black';
-        src: url('/baron/baron_black_italic.woff2') format('woff2');
-        font-weight: 700;
-        font-style: italic;
-        font-display: fallback;
-    }
     @keyframes slide-in {
         from {
             transform: translateX(-100%);
@@ -76,7 +34,7 @@
     html {
         --min-tap-height: 44px;
         --font-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-        --font-sans-heading: 'Baron';
+        --font-sans-heading: 'Poppins', sans-serif;
         --color-text: hsl(248, 5%, 10%);
         --color-gray-text: hsl(209.1, 20%, 67.6%);
         --color-pure-black: hsl(0, 0%, 0%);
@@ -123,12 +81,14 @@
         --transition-timing-ease: cubic-bezier(0.44, 0.21, 0, 1);
         --diagonal-skew: skewY(-5deg);
         --diagonal-skew-opposite: skewY(5deg);
+        --shadow-color: hsl(0, 0%, 75%);
     }
     body {
         overflow-y: scroll;
         font-family: var(--font-sans-serif);
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
+        background-color: var(--color-gray-100);
     }
     #__next {
         isolation: isolate;

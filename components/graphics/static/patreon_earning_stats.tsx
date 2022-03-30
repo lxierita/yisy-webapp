@@ -132,7 +132,7 @@ const NestedMenuItemList = styled.div`
 
 const Text = styled.p`
   width: 90%;
-  font-size: 14px;
+  font-size: 12px;
   color: ${(props) => props.color || "inherit"};
 `;
 
