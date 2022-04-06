@@ -51,15 +51,24 @@ const StyledNavLink = styled.li`
 `;
 const StyledHeader = styled.header`
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   @media (min-width: 300px) {
     padding: 12px 0px;
+    & > a {
+      display: none;
+    }
   }
   @media (min-width: 700px) {
     padding: 32px 0px;
+  }
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    & > a {
+      display: initial;
+    }
   }
   @media (min-width: 1400px) {
     padding: 32px 16px;
@@ -83,7 +92,6 @@ const StyledIcon = styled.img`
 `;
 
 const StyledNav = styled.nav`
-  display: initial;
   @media (min-width: 300px) {
     display: none;
   }
@@ -113,16 +121,14 @@ export function TitleBar(props) {
               <a href={item.src}>{item.label}</a>
             </StyledNavLink>
           ))}
-          <StyledNavLink key="link-get-started">
-            <PrimaryButton
-              id="get-started"
-              onClick={() => router.push("/get-started")}
-            >
-              Start Here
-            </PrimaryButton>
-          </StyledNavLink>
         </StyledList>
       </StyledNav>
+      <PrimaryButton
+        id="get-started"
+        onClick={() => router.push("/get-started")}
+      >
+        Start Here
+      </PrimaryButton>
       <MobileNav items={items} />
     </StyledHeader>
   );

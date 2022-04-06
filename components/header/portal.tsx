@@ -4,7 +4,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { CrossCircledIcon } from "@radix-ui/react-icons";
 
 const StyledButton = styled.button`
-  display: none;
   width: 50px;
   height: 50px;
   padding: 5px;
@@ -15,8 +14,8 @@ const StyledButton = styled.button`
   svg.close {
     transform: rotate(-45deg);
   }
-  @media (min-width: 300px) {
-    display: block;
+  @media (min-width: 1200px) {
+    display: none;
   }
 `;
 
