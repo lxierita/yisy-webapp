@@ -19,6 +19,21 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledIcon = styled.img`
+  display: block;
+  width: min-content;
+  max-width: 100px;
+  margin: 0 auto;
+  text-align: center;
+  grid-area: logo;
+`;
+
+const Toggle = styled.div`
+  display: grid;
+  place-content: center;
+  grid-area: close;
+`;
+
 const StyledModal = styled(Dialog.Content)`
   width: 100vw;
   position: fixed;
@@ -28,21 +43,34 @@ const StyledModal = styled(Dialog.Content)`
   right: 0;
   height: 100vh;
   display: grid;
-  place-content: center;
+  padding: 100px 32px 16px 32px;
+  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-areas: 
+    "logo logo logo"
+    "links links links"
+    "close close close"
+    ;
   background-color: var(--color-gray-200);
   animation: slide-in 300ms var(--transition-timing-ease) both;
   animation-delay: 100ms;
+`;
+
+const StyledNav = styled.nav`
+  grid-area: links;
+  width: 100%;
 `;
 
 const StyledNavList = styled.ol`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 0 auto;
 `;
 
 const StyledNavLink = styled.li`
   width: 100%;
-  padding: 16px 32px;
+  padding: 8px 16px;
   margin: 8px 16px;
   font-size: 1.2rem;
   color: var(--color-yisy-gray-logo);
@@ -50,6 +78,7 @@ const StyledNavLink = styled.li`
 
   &:hover {
     color: var(--color-yisy-gray-dark);
+    text-decoration: underline;
     transition: filter 100ms;
     filter: brightness(20%) hue-rotate(100deg);
   }
@@ -62,13 +91,16 @@ const StyledNavLink = styled.li`
 
 const CloseButton = styled.button`
   all: unset;
-  margin-block: 200px;
   & .icon {
     width: 50px;
     height: 50px;
     margin: 0 auto;
     color: var(--color-yisy-gray-logo);
     filter: drop-shadow(0.1px 0.1px var(--shadow-color));
+    
+    &:hover {
+      color: var(--color-black-normal);
+    }
   }
 `;
 
@@ -114,21 +146,24 @@ export default function MobileNav(props): ReactElement {
         </StyledButton>
       </Dialog.Trigger>
       <StyledModal>
-        <nav>
+          <StyledIcon src={"/static/logo.png"} alt="Yisy Logo" />
+        <StyledNav>
           <StyledNavList>
             {items &&
               items.map((item) => (
-                <StyledNavLink key={`link-${item.id}`}>
+                <StyledNavLink key={`link-${item.id}`} className="link">
                   <a href={item.src}>{item.label}</a>
                 </StyledNavLink>
               ))}
-            <Dialog.DialogClose asChild>
-              <CloseButton>
-                <CrossCircledIcon className="icon" />
-              </CloseButton>
-            </Dialog.DialogClose>
           </StyledNavList>
-        </nav>
+        </StyledNav>
+          <Toggle>
+              <Dialog.DialogClose asChild>
+                  <CloseButton>
+                      <CrossCircledIcon className="icon" />
+                  </CloseButton>
+              </Dialog.DialogClose>
+          </Toggle>
       </StyledModal>
     </Wrapper>
   );

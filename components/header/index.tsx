@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PrimaryButton } from "../button";
+import { Button } from "../button";
 import { useRouter } from "next/router";
 import MobileNav from "./portal";
 
@@ -49,12 +49,17 @@ const StyledNavLink = styled.li`
     filter: brightness(20%) hue-rotate(100deg);
   }
 `;
+
 const StyledHeader = styled.header`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: sticky;
+  top: -10px;
+  z-index: 1;
+  background-color: var(--color-gray-100);
   @media (min-width: 300px) {
     padding: 12px 0px;
     & > a {
@@ -123,12 +128,13 @@ export function TitleBar(props) {
           ))}
         </StyledList>
       </StyledNav>
-      <PrimaryButton
+      <Button
         id="get-started"
+        type="primary"
         onClick={() => router.push("/get-started")}
       >
         Start Here
-      </PrimaryButton>
+      </Button>
       <MobileNav items={items} />
     </StyledHeader>
   );

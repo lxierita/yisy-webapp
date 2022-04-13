@@ -1,6 +1,24 @@
 import styled from "styled-components";
 
-const StyledSection = styled.section`
+export const Section = styled.section`
+  padding: 1px;
+  @media (min-width: 300px) {
+    width: 75%;
+    height: auto;
+    margin: 56px auto;
+  }
+  @media (min-width: 700px) {
+    width: 75%;
+    height: auto;
+    margin: 80px auto;
+  }
+  @media (min-width: 1100px) {
+    width: 100%;
+    margin: 120px auto;
+  }
+`;
+
+export const StyledSection = styled(Section)`
   display: grid;
   place-content: center;
 
@@ -15,26 +33,20 @@ const StyledSection = styled.section`
     }
   }
   @media (min-width: 300px) {
-    width: 75%;
-    height: auto;
-    margin: 48px auto;
+    margin: 90px auto;
     & > h2 {
       font-size: 1.1rem;
     }
   }
 
   @media (min-width: 700px) {
-    width: 75%;
-    height: auto;
-    margin: 60px auto;
+    margin: 130px auto;
     & > h2 {
       font-size: 1.5rem;
     }
   }
   @media (min-width: 1100px) {
-    width: 100%;
-    height: 30vw;
-    margin: 0;
+    margin: 160px auto;
     & > h2 {
       font-size: 1.2rem;
     }

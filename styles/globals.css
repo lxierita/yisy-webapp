@@ -34,6 +34,7 @@
     html {
         --min-tap-height: 44px;
         --font-sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+        --font-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
         --font-sans-heading: 'Poppins', sans-serif;
         --color-text: hsl(248, 5%, 10%);
         --color-gray-text: hsl(209.1, 20%, 67.6%);

@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick: () => void;
   customStyle?: string;
   children?: ReactNode;
+  type?: string;
 }
 interface ExpansiveButtonProps {
   label: string;
@@ -18,18 +19,6 @@ interface ExpansiveButtonProps {
   content: string;
 }
 
-export function PrimaryButton({
-  id,
-  onClick,
-  customStyle,
-  children,
-}: ButtonProps) {
-  return (
-    <Button id={id} onClick={onClick} customStyle={customStyle}>
-      {children}
-    </Button>
-  );
-}
 
 export function SecondaryButton({
   id,
@@ -42,26 +31,6 @@ export function SecondaryButton({
       id={id}
       onClick={onClick}
       customStyle={cn("text-yisy-dark shadow-none", customStyle ?? customStyle)}
-    >
-      {children}
-    </Button>
-  );
-}
-
-export function TertiaryButton({
-  id,
-  onClick,
-  customStyle,
-  children,
-}: ButtonProps) {
-  return (
-    <Button
-      id={id}
-      onClick={onClick}
-      customStyle={cn(
-        "text-yisy-dark border border-gray-100",
-        customStyle ?? customStyle
-      )}
     >
       {children}
     </Button>
@@ -142,24 +111,25 @@ export function ExpansiveButton({
 }
 
 const StyledButton = styled.button`
-  background-color: var(--color-green-normal);
   transition: filter 600ms;
-  color: var(--color-gray-100);
   padding: 8px 32px;
   filter: drop-shadow(1px 2px 3px var(--shadow-color));
-
+  background-color: ${props => props.type === "primary" ? "var(--color-green-normal)" : props.type === "tertiary" ? "var(--color-gray-300)" : "var(--color-orange-normal)"};
+  color: ${props => props.type === "primary" ? "var(--color-gray-100)" : props.type === "tertiary" ? "var(--color-black-text-light)" : "var(--color-gray-800)" };
+  
   &:hover {
     transition: filter 300ms;
     filter: brightness(110%);
   }
 `;
 
-export function Button({ id, onClick, customStyle, children }: ButtonProps) {
+export function Button({ id, onClick, customStyle, children, type}: ButtonProps) {
   return (
     <StyledButton
       onClick={onClick}
       data-cy-id={`button-${id}`}
       className={cn("py-1 px-3 rounded-md m-2", customStyle ?? customStyle)}
+      type={type}
     >
       {children}
     </StyledButton>
